@@ -41,7 +41,8 @@
     padding:36px 30px 22px;
     z-index:200;
   }
-  .sb-brand{font-family:'Fraunces',serif;font-size:26px;font-weight:400;letter-spacing:-0.01em;}
+  .sb-brand{font-family:'Fraunces',serif;font-size:26px;font-weight:400;letter-spacing:-0.01em;display:inline-block;transition:color .25s;}
+  .sb-brand:hover{color:var(--accent);}
   .sb-nav{margin-top:56px;display:flex;flex-direction:column;gap:6px;}
   .sb-nav a{
     font-family:'Fraunces',serif;font-size:26px;font-weight:400;color:var(--text);
@@ -227,7 +228,7 @@
 <body>
 
 <aside class="sidebar">
-  <div class="sb-brand">Saekyoung</div>
+  <a class="sb-brand" href="index.html">Saekyoung</a>
 
   <nav class="sb-nav">
     <a href="info.html">Info</a>
