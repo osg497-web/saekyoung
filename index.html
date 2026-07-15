@@ -6,10 +6,10 @@
 <title>SaeKyoung — BX Designer</title>
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Iceland&family=Passero+One&family=Menbere:wght@400;600;700&family=Manuale:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Iceland&family=Passero+One&family=Menbere:wght@400;600;700&family=Manuale:wght@400;500;600;700&family=Rubik+Mono+One&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#000000;
+    --bg:#151513;
     --bg-soft:#141311;
     --panel:#171613;
     --text:#f3f1ea;
@@ -35,7 +35,7 @@
   /* ---------- sidebar ---------- */
   .sidebar{
     position:fixed;top:0;left:0;bottom:0;width:380px;
-    background:#000000;
+    background:#151513;
     border-right:1px solid var(--line);
     display:flex;flex-direction:column;
     padding:36px 30px 22px;
@@ -75,9 +75,27 @@
   /* ---------- hero ---------- */
   .hero{
     min-height:100vh;
-    display:flex;flex-direction:column;justify-content:flex-end;
-    padding:0 40px 90px;
+    display:flex;flex-direction:row;align-items:center;justify-content:flex-start;
+    padding:0;
     position:relative;
+    overflow:hidden;
+  }
+  .hero-anim{
+    padding-left:8vw;
+    display:flex;flex-wrap:wrap;white-space:pre;
+  }
+  .hero-anim .char{
+    font-family:'Rubik Mono One', sans-serif;
+    font-size:7vw;
+    color:#FFFFFF;
+    opacity:0;
+    display:inline-block;
+    transform:translateY(10px);
+    transition:opacity 0.4s ease-out, transform 0.4s ease-out;
+  }
+  .hero-anim .char.show{
+    opacity:1;
+    transform:translateY(0);
   }
   .hero-bg{
     position:absolute;inset:0;
@@ -229,7 +247,9 @@
     }
     .sb-cards{max-height:none;}
     main{margin-left:0;}
-    .hero{padding:0 20px 60px;}
+    .hero{padding:0;}
+    .hero-anim{padding-left:6vw;}
+    .hero-anim .char{font-size:11vw;}
     .hero-bg{display:none;}
     .section{padding:90px 20px;}
     .work-grid{grid-template-columns:1fr;gap:20px;}
@@ -315,7 +335,7 @@
 <main>
 
 <section class="hero">
-  <!-- 모션 영상 자리 — 영상 파일 받으면 여기에 넣을 예정 -->
+  <div class="hero-anim" id="heroTextWrap"></div>
 </section>
 
 <section class="section" id="work">
@@ -415,6 +435,23 @@
   }
   updateClock();
   setInterval(updateClock, 1000);
+
+  (function(){
+    const text = "SAE KYOUNG";
+    const wrap = document.getElementById('heroTextWrap');
+    const letterDelay = 300;
+    const spans = [];
+    for (const ch of text) {
+      const span = document.createElement('span');
+      span.className = 'char';
+      span.textContent = ch === ' ' ? '\u00A0' : ch;
+      wrap.appendChild(span);
+      spans.push(span);
+    }
+    spans.forEach((span, i) => {
+      setTimeout(() => { span.classList.add('show'); }, i * letterDelay + 300);
+    });
+  })();
 
   document.getElementById('sbBrand').addEventListener('click', function(e){
     e.preventDefault();
