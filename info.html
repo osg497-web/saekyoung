@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Info — Saekyoung</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0b0a;
+    --bg-soft:#141311;
+    --panel:#171613;
+    --text:#f3f1ea;
+    --text-dim:#8f8b80;
+    --text-faint:#5c584f;
+    --accent:#c9a961;
+    --line:rgba(243,241,234,0.12);
+    --line-strong:rgba(243,241,234,0.22);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Pretendard', -apple-system, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--accent);color:#0b0b0a;}
+  a{color:inherit;text-decoration:none;}
+  .serif{font-family:'Fraunces', serif;}
+
+  /* ---------- sidebar ---------- */
+  .sidebar{
+    position:fixed;top:0;left:0;bottom:0;width:380px;
+    background:var(--bg-soft);
+    border-right:1px solid var(--line);
+    display:flex;flex-direction:column;
+    padding:36px 30px 22px;
+    z-index:200;
+  }
+  .sb-brand{font-family:'Fraunces',serif;font-size:26px;font-weight:400;letter-spacing:-0.01em;}
+  .sb-nav{margin-top:56px;display:flex;flex-direction:column;gap:6px;}
+  .sb-nav a{
+    font-family:'Fraunces',serif;font-size:26px;font-weight:400;color:var(--text);
+    padding:3px 0;transition:color .25s, transform .25s;display:inline-block;
+  }
+  .sb-nav a:hover{color:var(--accent);transform:translateX(4px);}
+  .sb-nav a.active{color:var(--accent);}
+  .sb-cards{margin-top:20px;display:flex;flex-direction:column;gap:12px;overflow-y:auto;padding-right:2px;}
+  .sb-card{
+    display:block;background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    padding:16px 18px;transition:background .25s, border-color .25s, transform .25s;
+  }
+  .sb-card:hover{background:#1f1c18;border-color:var(--line-strong);transform:translateX(3px);}
+  .sb-card .t{font-size:14.5px;font-weight:600;color:var(--text);}
+  .sb-card .s{font-size:12.5px;color:var(--text-dim);margin-top:3px;}
+  .sb-foot{margin-top:auto;padding-top:26px;}
+  .sb-clock{
+    font-family:'Fraunces',serif;font-size:32px;font-variant-numeric:tabular-nums;letter-spacing:0.01em;
+  }
+  .sb-status{
+    margin-top:18px;padding-top:14px;border-top:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;
+    font-size:12px;color:var(--text-dim);
+  }
+  .sb-status .loc{display:flex;align-items:center;gap:8px;}
+  .sb-status .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);}
+
+  main{margin-left:380px;}
+
+  /* ---------- section label ---------- */
+  .section{padding:100px 40px 140px;}
+  .section-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    margin-bottom:80px;flex-wrap:wrap;gap:20px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:28px;
+  }
+  .section-label{
+    font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-dim);
+    display:flex;align-items:center;gap:10px;
+  }
+  .section-label::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);}
+  .section-title{font-family:'Fraunces',serif;font-size:clamp(28px,4vw,46px);font-weight:400;}
+
+  /* ---------- about ---------- */
+  .about-grid{display:grid;grid-template-columns:340px 1fr;gap:80px;}
+  .about-photo{width:100%;aspect-ratio:4/5;overflow:hidden;background:var(--bg-soft);border-radius:2px;}
+  .about-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05);}
+  .about-quote{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(24px,2.6vw,34px);line-height:1.35;color:var(--text);max-width:22ch;}
+  .about-body{margin-top:26px;font-size:15px;line-height:1.85;color:var(--text-dim);max-width:60ch;}
+  .about-tags{margin-top:36px;display:flex;flex-wrap:wrap;gap:10px;}
+  .about-tags span{
+    font-size:12px;padding:8px 14px;border:1px solid var(--line-strong);border-radius:100px;color:var(--text-dim);letter-spacing:0.02em;
+  }
+
+  .career{margin-top:70px;}
+  .career-row{
+    display:grid;grid-template-columns:140px 1fr auto;gap:24px;align-items:start;
+    padding:26px 0;border-top:1px solid var(--line);
+  }
+  .career-row:last-child{border-bottom:1px solid var(--line);}
+  .career-year{font-size:13px;color:var(--text-faint);font-variant-numeric:tabular-nums;padding-top:4px;}
+  .career-co{font-size:17px;font-weight:600;margin-bottom:8px;}
+  .career-role{font-size:13px;color:var(--accent);margin-bottom:12px;letter-spacing:0.02em;}
+  .career-list{list-style:none;font-size:14px;color:var(--text-dim);line-height:1.9;}
+  .career-list li{position:relative;padding-left:16px;}
+  .career-list li::before{content:'—';position:absolute;left:0;color:var(--text-faint);}
+  .career-skills{font-size:12px;color:var(--text-faint);text-align:right;line-height:1.8;white-space:nowrap;}
+
+  /* ---------- skills strip ---------- */
+  .skills-strip{
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px;
+    padding:60px 40px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
+  .skills-col h4{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-faint);margin-bottom:16px;font-weight:500;}
+  .skills-col ul{list-style:none;font-family:'Fraunces',serif;font-size:20px;}
+  .skills-col li{padding:4px 0;color:var(--text-dim);}
+
+  /* ---------- contact / footer ---------- */
+  footer{padding:140px 40px 50px;}
+  .contact-title{
+    font-family:'Fraunces',serif;font-weight:400;font-style:italic;
+    font-size:clamp(36px,7vw,88px);line-height:1.02;max-width:14ch;
+  }
+  .contact-title .amp{color:var(--accent);}
+  .contact-row{
+    margin-top:56px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:30px;
+    border-top:1px solid var(--line);padding-top:30px;
+  }
+  .contact-links{display:flex;flex-direction:column;gap:10px;font-size:15px;}
+  .contact-links a{display:inline-flex;align-items:center;gap:8px;color:var(--text-dim);transition:color .25s;}
+  .contact-links a:hover{color:var(--accent);}
+  .footer-meta{font-size:12px;color:var(--text-faint);text-align:right;line-height:1.8;}
+
+  @media(max-width:860px){
+    .sidebar{
+      position:relative;width:100%;height:auto;border-right:none;border-bottom:1px solid var(--line);
+      padding:26px 20px 24px;
+    }
+    .sb-cards{max-height:none;}
+    main{margin-left:0;}
+    .section{padding:70px 20px 90px;}
+    .about-grid{grid-template-columns:1fr;gap:40px;}
+    .career-row{grid-template-columns:1fr;}
+    .career-skills{text-align:left;}
+    footer{padding:90px 20px 40px;}
+    .contact-row{flex-direction:column;align-items:flex-start;}
+    .footer-meta{text-align:left;}
+  }
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sb-brand">Saekyoung</div>
+
+  <nav class="sb-nav">
+    <a href="info.html" class="active">Info</a>
+    <a href="index.html#work">Work</a>
+  </nav>
+
+  <div class="sb-cards">
+    <a class="sb-card" href="index.html#work">
+      <div class="t">Willog</div>
+      <div class="s">BX Design</div>
+    </a>
+    <a class="sb-card" href="index.html#work">
+      <div class="t">소운탕</div>
+      <div class="s">Brand Identity &amp; Spatial</div>
+    </a>
+    <a class="sb-card" href="index.html#work">
+      <div class="t">오하이 OHi</div>
+      <div class="s">Brand Identity &amp; Product</div>
+    </a>
+  </div>
+
+  <nav class="sb-nav" style="margin-top:28px;">
+    <a href="archive.html">Archive</a>
+    <a href="mailto:osg497@gmail.com">Contact me</a>
+  </nav>
+
+  <div class="sb-foot">
+    <div class="sb-clock" id="clock">--:--:--</div>
+    <div class="sb-status">
+      <span class="loc"><span class="dot"></span>Seoul, KR</span>
+      <span id="weather">—</span>
+    </div>
+  </div>
+</aside>
+
+<main>
+
+<section class="section" id="about" style="padding-top:120px;">
+  <div class="section-head">
+    <div class="section-label">About</div>
+    <div class="section-title">Saekyoung</div>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-photo">
+      <img src="https://osg497-web.github.io/images/profile-bw.jpg" alt="Saekyoung">
+    </div>
+    <div>
+      <p class="about-quote">"From Brand to Experience"</p>
+      <p class="about-body">
+        브랜드의 가치를 일관된 경험으로 만드는 디자이너를 꿈꿉니다. 서울을 기반으로 활동하는 BX(Brand Experience) 디자이너로, 생각을 명확하고 사려 깊은 비주얼로 옮기는 일과 사람들과 연결되는 브랜드를 만드는 일을 즐깁니다.
+      </p>
+      <p class="about-body">
+        브랜딩, 콘텐츠, 디자인 전략을 아우르는 경험을 바탕으로 매 프로젝트에 호기심과 구조, 그리고 디테일에 대한 애정을 가지고 접근합니다.
+      </p>
+      <div class="about-tags">
+        <span>공간 탐방</span><span>전시 관람</span><span>소재 탐구</span><span>아카이빙</span>
+      </div>
+
+      <div class="career">
+        <div class="career-row">
+          <div class="career-year">2025 – 2026</div>
+          <div>
+            <div class="career-co">Willog</div>
+            <div class="career-role">Brand &amp; Visual Designer</div>
+            <ul class="career-list">
+              <li>브랜드 커뮤니케이션 전반 설계</li>
+              <li>시각 자산 시스템 구축</li>
+              <li>전시 및 홍보 기획 협업</li>
+            </ul>
+          </div>
+          <div class="career-skills">물류 서비스업</div>
+        </div>
+        <div class="career-row">
+          <div class="career-year">2022 – 2024</div>
+          <div>
+            <div class="career-co">태평건설</div>
+            <div class="career-role">Administration &amp; Documentation</div>
+            <ul class="career-list">
+              <li>회계 자료 작성 및 정리</li>
+              <li>시방서 및 사내 문서 정리</li>
+              <li>공사 문서 관리 및 협력사 커뮤니케이션</li>
+            </ul>
+          </div>
+          <div class="career-skills">토목설계업</div>
+        </div>
+        <div class="career-row">
+          <div class="career-year">2020 – 2021</div>
+          <div>
+            <div class="career-co">트리코스</div>
+            <div class="career-role">Design Drafting</div>
+            <ul class="career-list">
+              <li>CCTV 설치를 위한 설계도면 제작</li>
+            </ul>
+          </div>
+          <div class="career-skills">소프트웨어 도매업</div>
+        </div>
+        <div class="career-row">
+          <div class="career-year">2015 – 2021</div>
+          <div>
+            <div class="career-co">건국대학교</div>
+            <div class="career-role">리빙디자인과</div>
+          </div>
+          <div class="career-skills">Education</div>
+        </div>
+        <div class="career-row">
+          <div class="career-year">2023 – 2024</div>
+          <div>
+            <div class="career-co">학점은행제</div>
+            <div class="career-role">심리학 전공</div>
+          </div>
+          <div class="career-skills">Education</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="skills-strip">
+  <div class="skills-col">
+    <h4>Design</h4>
+    <ul>
+      <li>Figma</li>
+      <li>Photoshop</li>
+      <li>Illustrator</li>
+      <li>Sketchup</li>
+    </ul>
+  </div>
+  <div class="skills-col">
+    <h4>AI Tools</h4>
+    <ul>
+      <li>Higgsfield</li>
+      <li>Claude</li>
+      <li>ChatGPT</li>
+      <li>Gemini</li>
+    </ul>
+  </div>
+  <div class="skills-col">
+    <h4>Approach</h4>
+    <ul>
+      <li>세심함</li>
+      <li>친화력</li>
+      <li>도전정신</li>
+      <li>책임감</li>
+    </ul>
+  </div>
+</section>
+
+<footer id="contact">
+  <h2 class="contact-title">Let's create<br>something <span class="amp">brand new</span></h2>
+  <div class="contact-row">
+    <div class="contact-links">
+      <a href="mailto:osg497@gmail.com">osg497@gmail.com ↗</a>
+      <a href="https://www.instagram.com/nomore_j" target="_blank" rel="noopener">Instagram ↗</a>
+      <a href="https://www.linkedin.com/in/세경-오-6b4b61383/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+    <div class="footer-meta">
+      Based in Seoul, KR<br>
+      © 2026 Saekyoung. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+  function updateClock(){
+    const now = new Date();
+    const seoul = new Intl.DateTimeFormat('en-GB', {
+      timeZone:'Asia/Seoul', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false
+    }).format(now);
+    document.getElementById('clock').textContent = seoul;
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current_weather=true')
+    .then(r => r.json())
+    .then(d => {
+      const t = Math.round(d.current_weather.temperature);
+      document.getElementById('weather').textContent = t + '°C';
+    })
+    .catch(() => { document.getElementById('weather').textContent = ''; });
+</script>
+
+</main>
+</body>
+</html>

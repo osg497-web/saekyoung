@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saekyoung — BX Designer</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0b0a;
+    --bg-soft:#141311;
+    --panel:#171613;
+    --text:#f3f1ea;
+    --text-dim:#8f8b80;
+    --text-faint:#5c584f;
+    --accent:#c9a961;
+    --line:rgba(243,241,234,0.12);
+    --line-strong:rgba(243,241,234,0.22);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Pretendard', -apple-system, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--accent);color:#0b0b0a;}
+  a{color:inherit;text-decoration:none;}
+  .serif{font-family:'Fraunces', serif;}
+
+  /* ---------- sidebar ---------- */
+  .sidebar{
+    position:fixed;top:0;left:0;bottom:0;width:380px;
+    background:var(--bg-soft);
+    border-right:1px solid var(--line);
+    display:flex;flex-direction:column;
+    padding:36px 30px 22px;
+    z-index:200;
+  }
+  .sb-brand{font-family:'Fraunces',serif;font-size:26px;font-weight:400;letter-spacing:-0.01em;}
+  .sb-nav{margin-top:56px;display:flex;flex-direction:column;gap:6px;}
+  .sb-nav a{
+    font-family:'Fraunces',serif;font-size:26px;font-weight:400;color:var(--text);
+    padding:3px 0;transition:color .25s, transform .25s;display:inline-block;
+  }
+  .sb-nav a:hover{color:var(--accent);transform:translateX(4px);}
+  .sb-nav a.active{color:var(--accent);}
+  .sb-cards{margin-top:20px;display:flex;flex-direction:column;gap:12px;overflow-y:auto;padding-right:2px;}
+  .sb-card{
+    display:block;background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    padding:16px 18px;transition:background .25s, border-color .25s, transform .25s;
+  }
+  .sb-card:hover{background:#1f1c18;border-color:var(--line-strong);transform:translateX(3px);}
+  .sb-card .t{font-size:14.5px;font-weight:600;color:var(--text);}
+  .sb-card .s{font-size:12.5px;color:var(--text-dim);margin-top:3px;}
+  .sb-foot{margin-top:auto;padding-top:26px;}
+  .sb-clock{
+    font-family:'Fraunces',serif;font-size:32px;font-variant-numeric:tabular-nums;letter-spacing:0.01em;
+  }
+  .sb-status{
+    margin-top:18px;padding-top:14px;border-top:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;
+    font-size:12px;color:var(--text-dim);
+  }
+  .sb-status .loc{display:flex;align-items:center;gap:8px;}
+  .sb-status .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);}
+
+  main{margin-left:380px;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    padding:0 40px 90px;
+    position:relative;
+  }
+  .hero-bg{
+    position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:flex-end;
+    opacity:0.5;
+    pointer-events:none;
+  }
+  .hero-bg img{
+    height:62vh;object-fit:cover;
+    filter:grayscale(1) contrast(1.05) brightness(0.85);
+    -webkit-mask-image:linear-gradient(to left, black 30%, transparent 95%);
+            mask-image:linear-gradient(to left, black 30%, transparent 95%);
+  }
+  .hero-kicker{
+    font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);
+    margin-bottom:22px;display:flex;align-items:center;gap:10px;position:relative;z-index:2;
+  }
+  .hero-kicker::before{content:'';width:26px;height:1px;background:var(--accent);}
+  h1.hero-title{
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:clamp(40px, 8vw, 108px);
+    line-height:0.98;
+    letter-spacing:-0.01em;
+    max-width:16ch;
+    position:relative;z-index:2;
+  }
+  h1.hero-title em{font-style:italic;color:var(--accent);}
+  .hero-sub{
+    margin-top:28px;
+    max-width:520px;
+    font-size:16px;line-height:1.7;color:var(--text-dim);
+    position:relative;z-index:2;
+  }
+  .hero-foot{
+    margin-top:60px;
+    display:flex;justify-content:space-between;align-items:flex-end;
+    border-top:1px solid var(--line);
+    padding-top:20px;
+    position:relative;z-index:2;
+  }
+  .scroll-hint{font-size:12px;letter-spacing:0.08em;color:var(--text-faint);text-transform:uppercase;}
+  .hero-role{font-size:12px;letter-spacing:0.06em;color:var(--text-dim);text-align:right;line-height:1.6;}
+
+  /* ---------- section label ---------- */
+  .section{padding:140px 40px;}
+  .section-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    margin-bottom:80px;flex-wrap:wrap;gap:20px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:28px;
+  }
+  .section-label{
+    font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-dim);
+    display:flex;align-items:center;gap:10px;
+  }
+  .section-label::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);}
+  .section-title{font-family:'Fraunces',serif;font-size:clamp(28px,4vw,46px);font-weight:400;}
+
+  /* ---------- work grid (masonry-style varied sizes) ---------- */
+  .work-grid{
+    display:grid;grid-template-columns:1.05fr 0.9fr 1fr;gap:28px;align-items:start;
+  }
+  .work-card{
+    position:relative;border-radius:18px;overflow:hidden;
+    background:var(--bg-soft);
+    display:block;
+  }
+  .work-card img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    transform:scale(1.01);
+    transition:transform .8s cubic-bezier(.2,.7,.2,1), filter .5s;
+  }
+  .work-card:hover img{transform:scale(1.08);}
+  .work-card .tags{
+    position:absolute;top:16px;right:16px;display:flex;gap:8px;z-index:2;
+  }
+  .work-card .tags span{
+    font-size:11px;letter-spacing:0.02em;font-weight:600;
+    background:rgba(243,241,234,0.92);color:#171613;
+    padding:6px 12px;border-radius:100px;white-space:nowrap;
+  }
+  .work-card .card-name{
+    position:absolute;left:18px;bottom:18px;z-index:2;
+    font-size:12px;font-weight:600;letter-spacing:0.03em;color:var(--text);
+    background:rgba(11,11,10,0.55);backdrop-filter:blur(6px);
+    padding:6px 12px;border-radius:100px;
+  }
+  .work-caption{margin-top:16px;}
+  .work-caption .d{font-size:13.5px;line-height:1.6;color:var(--text-dim);}
+
+  .work-col-1{margin-top:0;}
+  .work-col-1 .work-card{aspect-ratio:3/4;}
+  .work-col-2{margin-top:0;}
+  .work-col-2 .work-card{aspect-ratio:1/1;}
+  .work-col-3{margin-top:0;}
+  .work-col-3 .work-card{aspect-ratio:4/5.6;}
+
+  /* ---------- contact / footer ---------- */
+  footer{padding:140px 40px 50px;}
+  .contact-title{
+    font-family:'Fraunces',serif;font-weight:400;font-style:italic;
+    font-size:clamp(36px,7vw,88px);line-height:1.02;max-width:14ch;
+  }
+  .contact-title .amp{color:var(--accent);}
+  .contact-row{
+    margin-top:56px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:30px;
+    border-top:1px solid var(--line);padding-top:30px;
+  }
+  .contact-links{display:flex;flex-direction:column;gap:10px;font-size:15px;}
+  .contact-links a{display:inline-flex;align-items:center;gap:8px;color:var(--text-dim);transition:color .25s;}
+  .contact-links a:hover{color:var(--accent);}
+  .footer-meta{font-size:12px;color:var(--text-faint);text-align:right;line-height:1.8;}
+
+  @media(max-width:860px){
+    .sidebar{
+      position:relative;width:100%;height:auto;border-right:none;border-bottom:1px solid var(--line);
+      padding:26px 20px 24px;
+    }
+    .sb-cards{max-height:none;}
+    main{margin-left:0;}
+    .hero{padding:0 20px 60px;}
+    .hero-bg{display:none;}
+    .section{padding:90px 20px;}
+    .work-grid{grid-template-columns:1fr;gap:20px;}
+    .work-col-1, .work-col-2, .work-col-3{margin-top:0;}
+    .work-col-1 .work-card, .work-col-2 .work-card, .work-col-3 .work-card{aspect-ratio:4/5;}
+    footer{padding:90px 20px 40px;}
+    .contact-row{flex-direction:column;align-items:flex-start;}
+    .footer-meta{text-align:left;}
+  }
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sb-brand">Saekyoung</div>
+
+  <nav class="sb-nav">
+    <a href="info.html">Info</a>
+    <a href="#work">Work</a>
+  </nav>
+
+  <div class="sb-cards">
+    <a class="sb-card" href="#work">
+      <div class="t">Willog</div>
+      <div class="s">BX Design</div>
+    </a>
+    <a class="sb-card" href="#work">
+      <div class="t">소운탕</div>
+      <div class="s">Brand Identity &amp; Spatial</div>
+    </a>
+    <a class="sb-card" href="#work">
+      <div class="t">오하이 OHi</div>
+      <div class="s">Brand Identity &amp; Product</div>
+    </a>
+  </div>
+
+  <nav class="sb-nav" style="margin-top:28px;">
+    <a href="archive.html">Archive</a>
+    <a href="mailto:osg497@gmail.com">Contact me</a>
+  </nav>
+
+  <div class="sb-foot">
+    <div class="sb-clock" id="clock">--:--:--</div>
+    <div class="sb-status">
+      <span class="loc"><span class="dot"></span>Seoul, KR</span>
+      <span id="weather">—</span>
+    </div>
+  </div>
+</aside>
+
+<main>
+
+<section class="hero">
+  <div class="hero-bg">
+    <img src="https://osg497-web.github.io/images/hero-person.png" alt="">
+  </div>
+  <div class="hero-kicker">BX Designer · Seoul</div>
+  <h1 class="hero-title">From Brand<br>to <em>Experience</em></h1>
+  <p class="hero-sub">브랜드의 가치를 일관된 경험으로 만드는 디자이너, 오세경입니다. 아이덴티티부터 공간, 커뮤니케이션까지 — 생각을 또렷한 시각 언어로 옮깁니다.</p>
+  <div class="hero-foot">
+    <span class="scroll-hint">Scroll to explore ↓</span>
+    <span class="hero-role">Brand Identity — Editorial<br>Communication Design</span>
+  </div>
+</section>
+
+<section class="section" id="work">
+  <div class="section-head">
+    <div class="section-label">Selected Work</div>
+    <div class="section-title">Projects</div>
+  </div>
+
+  <div class="work-grid">
+
+    <div class="work-col-1">
+      <a class="work-card" href="https://osg497-web.github.io/#work" target="_blank" rel="noopener">
+        <img src="https://osg497-web.github.io/soun.png" alt="소운탕">
+        <div class="tags"><span>Identity</span><span>Spatial</span></div>
+        <div class="card-name">Self-Initiated</div>
+      </a>
+      <div class="work-caption">
+        <div class="d">도심 속에서 잠시 멈춰 자신을 돌아볼 수 있는 목욕 공간. 재귀반사 사이니지와 픽토그램, 공간 경험까지 아우른 브랜드 아이덴티티.</div>
+      </div>
+    </div>
+
+    <div class="work-col-2">
+      <a class="work-card" href="https://osg497-web.github.io/#work" target="_blank" rel="noopener">
+        <img src="https://osg497-web.github.io/ohi.png" alt="오하이 OHi">
+        <div class="tags"><span>Identity</span><span>Product</span></div>
+        <div class="card-name">Self-Initiated</div>
+      </a>
+      <div class="work-caption">
+        <div class="d">비 오는 밤에도 존재를 드러내는 재귀반사 우산 브랜드. 시인성과 개성을 함께 담은 로고와 시그니처 실루엣.</div>
+      </div>
+    </div>
+
+    <div class="work-col-3">
+      <a class="work-card" href="https://osg497-web.github.io/#work" target="_blank" rel="noopener">
+        <img src="https://osg497-web.github.io/willog.png" alt="Willog">
+        <div class="tags"><span>BX Design</span><span>In-house</span></div>
+        <div class="card-name">Willog · 2025–26</div>
+      </a>
+      <div class="work-caption">
+        <div class="d">물류 모니터링에서 AIoT 기반 공급망 인텔리전스 플랫폼으로. 브랜드 리뉴얼과 디자인 시스템, 전시 부스까지 이어진 통합 브랜딩.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer id="contact">
+  <h2 class="contact-title">Let's create<br>something <span class="amp">brand new</span></h2>
+  <div class="contact-row">
+    <div class="contact-links">
+      <a href="mailto:osg497@gmail.com">osg497@gmail.com ↗</a>
+      <a href="https://www.instagram.com/nomore_j" target="_blank" rel="noopener">Instagram ↗</a>
+      <a href="https://www.linkedin.com/in/세경-오-6b4b61383/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+    <div class="footer-meta">
+      Based in Seoul, KR<br>
+      © 2026 Saekyoung. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+  function updateClock(){
+    const now = new Date();
+    const seoul = new Intl.DateTimeFormat('en-GB', {
+      timeZone:'Asia/Seoul', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false
+    }).format(now);
+    document.getElementById('clock').textContent = seoul;
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current_weather=true')
+    .then(r => r.json())
+    .then(d => {
+      const t = Math.round(d.current_weather.temperature);
+      document.getElementById('weather').textContent = t + '°C';
+    })
+    .catch(() => { document.getElementById('weather').textContent = ''; });
+</script>
+
+</main>
+</body>
+</html>

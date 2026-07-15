@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Archive — Saekyoung</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0b0a;
+    --bg-soft:#141311;
+    --panel:#171613;
+    --text:#f3f1ea;
+    --text-dim:#8f8b80;
+    --text-faint:#5c584f;
+    --accent:#c9a961;
+    --line:rgba(243,241,234,0.12);
+    --line-strong:rgba(243,241,234,0.22);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Pretendard', -apple-system, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--accent);color:#0b0b0a;}
+  a{color:inherit;text-decoration:none;}
+  .serif{font-family:'Fraunces', serif;}
+
+  .sidebar{
+    position:fixed;top:0;left:0;bottom:0;width:380px;
+    background:var(--bg-soft);
+    border-right:1px solid var(--line);
+    display:flex;flex-direction:column;
+    padding:36px 30px 22px;
+    z-index:200;
+  }
+  .sb-brand{font-family:'Fraunces',serif;font-size:26px;font-weight:400;letter-spacing:-0.01em;}
+  .sb-nav{margin-top:56px;display:flex;flex-direction:column;gap:6px;}
+  .sb-nav a{
+    font-family:'Fraunces',serif;font-size:26px;font-weight:400;color:var(--text);
+    padding:3px 0;transition:color .25s, transform .25s;display:inline-block;
+  }
+  .sb-nav a:hover{color:var(--accent);transform:translateX(4px);}
+  .sb-nav a.active{color:var(--accent);}
+  .sb-cards{margin-top:20px;display:flex;flex-direction:column;gap:12px;overflow-y:auto;padding-right:2px;}
+  .sb-card{
+    display:block;background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    padding:16px 18px;transition:background .25s, border-color .25s, transform .25s;
+  }
+  .sb-card:hover{background:#1f1c18;border-color:var(--line-strong);transform:translateX(3px);}
+  .sb-card .t{font-size:14.5px;font-weight:600;color:var(--text);}
+  .sb-card .s{font-size:12.5px;color:var(--text-dim);margin-top:3px;}
+  .sb-foot{margin-top:auto;padding-top:26px;}
+  .sb-clock{
+    font-family:'Fraunces',serif;font-size:32px;font-variant-numeric:tabular-nums;letter-spacing:0.01em;
+  }
+  .sb-status{
+    margin-top:18px;padding-top:14px;border-top:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;
+    font-size:12px;color:var(--text-dim);
+  }
+  .sb-status .loc{display:flex;align-items:center;gap:8px;}
+  .sb-status .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);}
+
+  main{margin-left:380px;}
+
+  .section{padding:120px 40px 140px;}
+  .section-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    margin-bottom:60px;flex-wrap:wrap;gap:20px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:28px;
+  }
+  .section-label{
+    font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-dim);
+    display:flex;align-items:center;gap:10px;
+  }
+  .section-label::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);}
+  .section-title{font-family:'Fraunces',serif;font-size:clamp(28px,4vw,46px);font-weight:400;}
+  .section-note{margin-top:-30px;margin-bottom:60px;font-size:14px;color:var(--text-dim);}
+
+  .archive-grid{
+    display:grid;grid-template-columns:repeat(3, 1fr);gap:20px;
+    filter:grayscale(0.15);
+  }
+  .archive-grid img{
+    width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:12px;
+    opacity:0.55;filter:grayscale(0.5);
+    transition:opacity .3s, filter .3s;
+  }
+  .archive-grid img:hover{opacity:0.9;filter:grayscale(0);}
+
+  footer{padding:100px 40px 50px;border-top:1px solid var(--line);margin-top:60px;}
+  .contact-links{display:flex;flex-direction:column;gap:10px;font-size:15px;}
+  .contact-links a{display:inline-flex;align-items:center;gap:8px;color:var(--text-dim);transition:color .25s;}
+  .contact-links a:hover{color:var(--accent);}
+  .footer-meta{font-size:12px;color:var(--text-faint);margin-top:20px;}
+
+  @media(max-width:860px){
+    .sidebar{
+      position:relative;width:100%;height:auto;border-right:none;border-bottom:1px solid var(--line);
+      padding:26px 20px 24px;
+    }
+    .sb-cards{max-height:none;}
+    main{margin-left:0;}
+    .section{padding:70px 20px 90px;}
+    .archive-grid{grid-template-columns:repeat(2, 1fr);gap:12px;}
+    footer{padding:70px 20px 40px;}
+  }
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sb-brand">Saekyoung</div>
+
+  <nav class="sb-nav">
+    <a href="info.html">Info</a>
+    <a href="index.html#work">Work</a>
+  </nav>
+
+  <div class="sb-cards">
+    <a class="sb-card" href="index.html#work">
+      <div class="t">Willog</div>
+      <div class="s">BX Design</div>
+    </a>
+    <a class="sb-card" href="index.html#work">
+      <div class="t">소운탕</div>
+      <div class="s">Brand Identity &amp; Spatial</div>
+    </a>
+    <a class="sb-card" href="index.html#work">
+      <div class="t">오하이 OHi</div>
+      <div class="s">Brand Identity &amp; Product</div>
+    </a>
+  </div>
+
+  <nav class="sb-nav" style="margin-top:28px;">
+    <a href="archive.html" class="active">Archive</a>
+    <a href="mailto:osg497@gmail.com">Contact me</a>
+  </nav>
+
+  <div class="sb-foot">
+    <div class="sb-clock" id="clock">--:--:--</div>
+    <div class="sb-status">
+      <span class="loc"><span class="dot"></span>Seoul, KR</span>
+      <span id="weather">—</span>
+    </div>
+  </div>
+</aside>
+
+<main>
+
+<section class="section">
+  <div class="section-head">
+    <div class="section-label">Archive</div>
+    <div class="section-title">Coming soon</div>
+  </div>
+  <p class="section-note">레퍼런스, 영감, 지난 작업들을 모아두는 공간이에요. 하나씩 채워나갈게요.</p>
+
+  <div class="archive-grid">
+    <img src="https://osg497-web.github.io/research-calendar.png" alt="">
+    <img src="https://osg497-web.github.io/illust-couple.png" alt="">
+    <img src="https://osg497-web.github.io/door-illust.png" alt="">
+    <img src="https://osg497-web.github.io/gesture.png" alt="">
+    <img src="https://osg497-web.github.io/video.png" alt="">
+    <img src="https://osg497-web.github.io/tomvagee-portrait.png" alt="">
+  </div>
+</section>
+
+<footer>
+  <div class="contact-links">
+    <a href="mailto:osg497@gmail.com">osg497@gmail.com ↗</a>
+    <a href="https://www.instagram.com/nomore_j" target="_blank" rel="noopener">Instagram ↗</a>
+    <a href="https://www.linkedin.com/in/세경-오-6b4b61383/" target="_blank" rel="noopener">LinkedIn ↗</a>
+  </div>
+  <div class="footer-meta">© 2026 Saekyoung. All rights reserved.</div>
+</footer>
+
+<script>
+  function updateClock(){
+    const now = new Date();
+    const seoul = new Intl.DateTimeFormat('en-GB', {
+      timeZone:'Asia/Seoul', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false
+    }).format(now);
+    document.getElementById('clock').textContent = seoul;
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current_weather=true')
+    .then(r => r.json())
+    .then(d => {
+      const t = Math.round(d.current_weather.temperature);
+      document.getElementById('weather').textContent = t + '°C';
+    })
+    .catch(() => { document.getElementById('weather').textContent = ''; });
+</script>
+
+</main>
+</body>
+</html>
