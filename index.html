@@ -191,7 +191,21 @@
   .contact-links a:hover{color:var(--accent);}
   .footer-meta{font-size:12px;color:var(--text-faint);text-align:right;line-height:1.8;}
 
+  /* ---------- work-card hover cursor label ---------- */
+  .work-card{cursor:none;}
+  .cursor-label{
+    position:fixed;top:0;left:0;z-index:9999;pointer-events:none;
+    transform:translate(-50%,-50%) scale(0.6);
+    background:var(--accent);color:#171613;
+    font-family:'Fraunces',serif;font-weight:500;font-size:15px;letter-spacing:0.01em;
+    padding:14px 26px;border-radius:100px;white-space:nowrap;
+    opacity:0;transition:opacity .22s ease, transform .22s ease;
+  }
+  .cursor-label.active{opacity:1;transform:translate(-50%,-50%) scale(1);}
   @media(max-width:860px){
+    .work-card{cursor:pointer;}
+    .cursor-label{display:none;}
+  }
     .sidebar{
       position:relative;width:100%;height:auto;border-right:none;border-bottom:1px solid var(--line);
       padding:26px 20px 24px;
@@ -208,6 +222,7 @@
     .contact-row{flex-direction:column;align-items:flex-start;}
     .footer-meta{text-align:left;}
   }
+
 </style>
 </head>
 <body>
@@ -273,7 +288,7 @@
   <div class="work-grid">
 
     <div class="work-col-1">
-      <a class="work-card" href="https://osg497-web.github.io/#work" target="_blank" rel="noopener">
+      <a class="work-card" href="https://osg497-web.github.io/#work" target="_blank" rel="noopener" data-label="소운탕 보기">
         <img src="https://osg497-web.github.io/soun.png" alt="소운탕">
         <div class="tags"><span>Identity</span><span>Spatial</span></div>
         <div class="card-name">Self-Initiated</div>
@@ -284,7 +299,7 @@
     </div>
 
     <div class="work-col-2">
-      <a class="work-card" href="https://osg497-web.github.io/#work" target="_blank" rel="noopener">
+      <a class="work-card" href="https://osg497-web.github.io/#work" target="_blank" rel="noopener" data-label="오하이 보기">
         <img src="https://osg497-web.github.io/ohi.png" alt="오하이 OHi">
         <div class="tags"><span>Identity</span><span>Product</span></div>
         <div class="card-name">Self-Initiated</div>
@@ -295,7 +310,7 @@
     </div>
 
     <div class="work-col-3">
-      <a class="work-card" href="https://osg497-web.github.io/#work" target="_blank" rel="noopener">
+      <a class="work-card" href="https://osg497-web.github.io/#work" target="_blank" rel="noopener" data-label="Willog 보기">
         <img src="https://osg497-web.github.io/willog.png" alt="Willog">
         <div class="tags"><span>BX Design</span><span>In-house</span></div>
         <div class="card-name">Willog · 2025–26</div>
@@ -343,6 +358,32 @@
     .catch(() => { document.getElementById('weather').textContent = ''; });
 </script>
 
+<div class="cursor-label" id="cursorLabel"></div>
+
+<script>
+  (function(){
+    const label = document.getElementById('cursorLabel');
+    const cards = document.querySelectorAll('.work-card');
+    if(!label || !cards.length) return;
+
+    window.addEventListener('mousemove', e=>{
+      label.style.left = e.clientX + 'px';
+      label.style.top = e.clientY + 'px';
+    });
+
+    cards.forEach(card=>{
+      card.addEventListener('mouseenter', ()=>{
+        label.textContent = card.dataset.label || '';
+        label.classList.add('active');
+      });
+      card.addEventListener('mouseleave', ()=>{
+        label.classList.remove('active');
+      });
+    });
+  })();
+</script>
+
 </main>
+
 </body>
 </html>
