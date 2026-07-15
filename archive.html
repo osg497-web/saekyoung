@@ -115,6 +115,39 @@
     footer{padding:70px 20px 40px;}
   }
 
+
+  /* ---------- contact modal ---------- */
+  .contact-modal-overlay{
+    position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);
+    z-index:10000;display:none;align-items:center;justify-content:center;padding:20px;
+  }
+  .contact-modal-overlay.open{display:flex;}
+  .contact-modal{
+    background:#ffffff;color:#171613;border-radius:20px;max-width:440px;width:100%;
+    padding:36px 32px 32px;position:relative;box-shadow:0 30px 70px rgba(0,0,0,0.45);
+    font-family:'Pretendard',sans-serif;
+  }
+  .contact-modal .close-btn{
+    position:absolute;top:18px;right:18px;background:none;border:none;font-size:20px;
+    color:#888;cursor:pointer;line-height:1;padding:6px;
+  }
+  .contact-modal .close-btn:hover{color:#171613;}
+  .contact-modal h2{font-size:23px;font-weight:700;margin-bottom:8px;}
+  .contact-modal .sub{font-size:13.5px;color:#8a8a8a;margin-bottom:26px;}
+  .contact-modal label{display:block;font-size:13px;font-weight:600;margin-bottom:8px;margin-top:18px;color:#222;}
+  .contact-modal label:first-of-type{margin-top:0;}
+  .contact-modal input, .contact-modal textarea{
+    width:100%;padding:12px 14px;border:1px solid #e3e2de;border-radius:10px;background:#f6f5f2;
+    font-family:'Pretendard',sans-serif;font-size:14px;color:#171613;outline:none;transition:border-color .2s;
+  }
+  .contact-modal input:focus, .contact-modal textarea:focus{border-color:#171613;}
+  .contact-modal textarea{min-height:100px;resize:vertical;}
+  .contact-modal button.send-btn{
+    margin-top:24px;width:100%;padding:14px;border:none;border-radius:10px;background:#171613;color:#fff;
+    font-size:14.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;
+    transition:background .2s;font-family:'Pretendard',sans-serif;
+  }
+  .contact-modal button.send-btn:hover{background:#333;}
 </style>
 </head>
 <body>
@@ -144,7 +177,7 @@
 
   <nav class="sb-nav" style="margin-top:28px;">
     <a href="archive.html" class="active">Archive</a>
-    <a href="mailto:osg497@gmail.com">Contact me</a>
+    <a href="#" onclick="openContactModal();return false;">Contact me</a>
   </nav>
 
   <div class="sb-foot">
@@ -206,5 +239,44 @@
 
 </main>
 
+
+<div class="contact-modal-overlay" id="contactOverlay">
+  <div class="contact-modal">
+    <button class="close-btn" type="button" onclick="closeContactModal()">✕</button>
+    <h2>Let's work together 👋</h2>
+    <p class="sub">메시지를 보내주시면 빠르게 답장드릴게요!</p>
+    <form id="contactForm">
+      <label for="cName">Name</label>
+      <input type="text" id="cName" placeholder="Your name" required>
+      <label for="cEmail">Email</label>
+      <input type="email" id="cEmail" placeholder="your@email.com" required>
+      <label for="cMessage">Message</label>
+      <textarea id="cMessage" placeholder="Hey Saekyoung, nice to meet you..." required></textarea>
+      <button type="submit" class="send-btn">Send Message →</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  function openContactModal(){
+    document.getElementById('contactOverlay').classList.add('open');
+  }
+  function closeContactModal(){
+    document.getElementById('contactOverlay').classList.remove('open');
+  }
+  document.getElementById('contactOverlay').addEventListener('click', function(e){
+    if(e.target.id === 'contactOverlay') closeContactModal();
+  });
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('cName').value;
+    const email = document.getElementById('cEmail').value;
+    const message = document.getElementById('cMessage').value;
+    const subject = encodeURIComponent('[Portfolio Contact] ' + name);
+    const body = encodeURIComponent('이름: ' + name + '\n이메일: ' + email + '\n\n' + message);
+    window.location.href = 'mailto:osg497@gmail.com?subject=' + subject + '&body=' + body;
+    closeContactModal();
+  });
+</script>
 </body>
 </html>
