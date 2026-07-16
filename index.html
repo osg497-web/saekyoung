@@ -161,9 +161,8 @@
 
   /* ---------- work grid (masonry-style varied sizes) ---------- */
   .work-grid{
-    display:grid;grid-template-columns:1.05fr 0.9fr 1fr;gap:28px;align-items:start;
+    columns:2;column-gap:32px;
   }
-  .work-track{display:flex;flex-direction:column;gap:28px;}
   .work-card{
     position:relative;border-radius:18px;overflow:hidden;
     background:var(--bg-soft);
@@ -192,19 +191,15 @@
   .work-caption{margin-top:16px;}
   .work-caption .d{font-size:13.5px;line-height:1.6;color:var(--text-dim);}
 
-  .work-col-1{margin-top:0;}
-  .work-col-1 .work-card{aspect-ratio:3/4;}
-  .work-col-2{margin-top:0;}
-  .work-col-2 .work-card{aspect-ratio:1/1;}
-  .work-col-3{margin-top:0;}
-  .work-col-3 .work-card{aspect-ratio:4/5.6;}
-
-  .work-col-4{margin-top:0;}
-  .work-col-4 .work-card{aspect-ratio:1/1;}
-  .work-col-5{margin-top:0;}
-  .work-col-5 .work-card{aspect-ratio:1/1;}
-  .work-col-6{margin-top:0;}
-  .work-col-6 .work-card{aspect-ratio:3/4.6;}
+  .work-col-1, .work-col-2, .work-col-3, .work-col-4, .work-col-5, .work-col-6{
+    break-inside:avoid;margin-bottom:32px;
+  }
+  .work-col-1 .work-card{aspect-ratio:16/11;}
+  .work-col-2 .work-card{aspect-ratio:4/3;}
+  .work-col-3 .work-card{aspect-ratio:16/12.5;}
+  .work-col-4 .work-card{aspect-ratio:4/3;}
+  .work-col-5 .work-card{aspect-ratio:16/10;}
+  .work-col-6 .work-card{aspect-ratio:16/12;}
 
   .work-card.placeholder{
     display:flex;align-items:center;justify-content:center;cursor:none;
@@ -256,9 +251,8 @@
     .hero-anim .char{font-size:11vw;}
     .hero-bg{display:none;}
     .section{padding:90px 20px;}
-    .work-grid{grid-template-columns:1fr;gap:20px;}
-    .work-track{gap:20px;}
-    .work-col-1, .work-col-2, .work-col-3, .work-col-4, .work-col-5, .work-col-6{margin-top:0;}
+    .work-grid{columns:1;column-gap:0;}
+    .work-col-1, .work-col-2, .work-col-3, .work-col-4, .work-col-5, .work-col-6{margin-bottom:20px;}
     .work-col-1 .work-card, .work-col-2 .work-card, .work-col-3 .work-card,
     .work-col-4 .work-card, .work-col-5 .work-card, .work-col-6 .work-card{aspect-ratio:4/5;}
     footer{padding:90px 20px 40px;}
@@ -350,69 +344,63 @@
 
   <div class="work-grid">
 
-    <div class="work-track">
-      <div class="work-col-1">
-        <a class="work-card" href="soun.html" data-label="소운탕">
-          <img src="https://osg497-web.github.io/soun.png" alt="소운탕">
-          <div class="tags"><span>Identity</span><span>Spatial</span></div>
-          <div class="card-name">Self-Initiated</div>
-        </a>
-        <div class="work-caption">
-          <div class="d">도심 속에서 잠시 멈춰 자신을 돌아볼 수 있는 목욕 공간. 재귀반사 사이니지와 픽토그램, 공간 경험까지 아우른 브랜드 아이덴티티.</div>
-        </div>
-      </div>
-
-      <div class="work-col-4">
-        <div class="work-card placeholder" data-label="Coming soon">
-          <span class="placeholder-text">Coming Soon</span>
-        </div>
-        <div class="work-caption">
-          <div class="d">새로운 프로젝트를 준비하고 있어요.</div>
-        </div>
+    <div class="work-col-1">
+      <a class="work-card" href="soun.html" data-label="소운탕">
+        <img src="https://osg497-web.github.io/soun.png" alt="소운탕">
+        <div class="tags"><span>Identity</span><span>Spatial</span></div>
+        <div class="card-name">Self-Initiated</div>
+      </a>
+      <div class="work-caption">
+        <div class="d">도심 속에서 잠시 멈춰 자신을 돌아볼 수 있는 목욕 공간. 재귀반사 사이니지와 픽토그램, 공간 경험까지 아우른 브랜드 아이덴티티.</div>
       </div>
     </div>
 
-    <div class="work-track">
-      <div class="work-col-2">
-        <a class="work-card" href="ohi.html" data-label="Ohi">
-          <img src="https://osg497-web.github.io/ohi.png" alt="오하이 OHi">
-          <div class="tags"><span>Identity</span><span>Product</span></div>
-          <div class="card-name">Self-Initiated</div>
-        </a>
-        <div class="work-caption">
-          <div class="d">비 오는 밤에도 존재를 드러내는 재귀반사 우산 브랜드. 시인성과 개성을 함께 담은 로고와 시그니처 실루엣.</div>
-        </div>
+    <div class="work-col-4">
+      <div class="work-card placeholder" data-label="Coming soon">
+        <span class="placeholder-text">Coming Soon</span>
       </div>
-
-      <div class="work-col-5">
-        <div class="work-card placeholder" data-label="Coming soon">
-          <span class="placeholder-text">Coming Soon</span>
-        </div>
-        <div class="work-caption">
-          <div class="d">새로운 프로젝트를 준비하고 있어요.</div>
-        </div>
+      <div class="work-caption">
+        <div class="d">새로운 프로젝트를 준비하고 있어요.</div>
       </div>
     </div>
 
-    <div class="work-track">
-      <div class="work-col-3">
-        <a class="work-card" href="willog.html" data-label="Willog">
-          <img src="https://osg497-web.github.io/willog.png" alt="Willog">
-          <div class="tags"><span>BX Design</span><span>In-house</span></div>
-          <div class="card-name">Willog · 2025–26</div>
-        </a>
-        <div class="work-caption">
-          <div class="d">물류 모니터링에서 AIoT 기반 공급망 인텔리전스 플랫폼으로. 브랜드 리뉴얼과 디자인 시스템, 전시 부스까지 이어진 통합 브랜딩.</div>
-        </div>
+    <div class="work-col-2">
+      <a class="work-card" href="ohi.html" data-label="Ohi">
+        <img src="https://osg497-web.github.io/ohi.png" alt="오하이 OHi">
+        <div class="tags"><span>Identity</span><span>Product</span></div>
+        <div class="card-name">Self-Initiated</div>
+      </a>
+      <div class="work-caption">
+        <div class="d">비 오는 밤에도 존재를 드러내는 재귀반사 우산 브랜드. 시인성과 개성을 함께 담은 로고와 시그니처 실루엣.</div>
       </div>
+    </div>
 
-      <div class="work-col-6">
-        <div class="work-card placeholder" data-label="Coming soon">
-          <span class="placeholder-text">Coming Soon</span>
-        </div>
-        <div class="work-caption">
-          <div class="d">새로운 프로젝트를 준비하고 있어요.</div>
-        </div>
+    <div class="work-col-5">
+      <div class="work-card placeholder" data-label="Coming soon">
+        <span class="placeholder-text">Coming Soon</span>
+      </div>
+      <div class="work-caption">
+        <div class="d">새로운 프로젝트를 준비하고 있어요.</div>
+      </div>
+    </div>
+
+    <div class="work-col-3">
+      <a class="work-card" href="willog.html" data-label="Willog">
+        <img src="https://osg497-web.github.io/willog.png" alt="Willog">
+        <div class="tags"><span>BX Design</span><span>In-house</span></div>
+        <div class="card-name">Willog · 2025–26</div>
+      </a>
+      <div class="work-caption">
+        <div class="d">물류 모니터링에서 AIoT 기반 공급망 인텔리전스 플랫폼으로. 브랜드 리뉴얼과 디자인 시스템, 전시 부스까지 이어진 통합 브랜딩.</div>
+      </div>
+    </div>
+
+    <div class="work-col-6">
+      <div class="work-card placeholder" data-label="Coming soon">
+        <span class="placeholder-text">Coming Soon</span>
+      </div>
+      <div class="work-caption">
+        <div class="d">새로운 프로젝트를 준비하고 있어요.</div>
       </div>
     </div>
 
