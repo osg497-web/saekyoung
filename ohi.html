@@ -101,6 +101,11 @@
     font-style:italic;color:var(--text-faint);font-size:14px;line-height:1.8;max-width:none;
   }
 
+  .ps-row{display:flex;gap:24px;align-items:baseline;}
+  .ps-row + .ps-row{margin-top:16px;}
+  .ps-label{flex:0 0 96px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:600;}
+  .ps-text{font-size:16px;color:var(--text);line-height:1.6;}
+
   .detail-meta-grid{
     display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px 24px;
     margin:56px 40px 0;padding:28px 0;
@@ -239,9 +244,9 @@
     <div class="cat">Brand Identity &amp; Product<br>Self-Initiated</div>
   </div>
   <div class="detail-intro-right">
-    <p>비 오는 일상을 더 안전하고 자유롭게 만들기 위해 시작된 우산 브랜드. 야간 시인성을 높이는 기능과 개성을 담은 디자인을 통해,<br>비 오는 날에도 자신만의 스타일을 이어갈 수 있도록 도와요.</p>
-    <p>어두운 옷, 검정 우산, 젖은 도로. 비 오는 밤의 보행자는 운전자의 시야에서 쉽게 사라져요.<br>특히 어두운 색상의 우산과 의류를 선호하는 국내 소비 환경에서는 사용자의 시인성이 더욱 낮아질 수 있다는 문제의식에서 출발했습니다.</p>
-    <p class="en">OHi is an umbrella brand designed to make rainy days safer and more expressive. By combining night-time visibility with distinctive design, it helps people keep their own style even in the rain — born from the idea that dark umbrellas and clothing make pedestrians dangerously hard to see on wet, dark streets.</p>
+    <div class="ps-row"><span class="ps-label">Problem</span><span class="ps-text">어두운 우산은 야간 시인성을 떨어뜨린다.</span></div>
+    <div class="ps-row"><span class="ps-label">Solution</span><span class="ps-text">반사 라인을 적용한 브랜드 디자인</span></div>
+    <p class="en">Problem — Dark umbrellas reduce visibility at night.<br>Solution — A brand design built around reflective lines.</p>
   </div>
 </div>
 
