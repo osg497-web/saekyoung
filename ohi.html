@@ -75,7 +75,10 @@
 
   /* ---------- detail page ---------- */
   .detail-hero{width:100%;height:64vh;min-height:360px;object-fit:cover;display:block;filter:saturate(1.05);}
-  .detail-hero--intro{height:92vh;min-height:520px;margin-top:0;}
+  .detail-hero--intro{
+    height:auto;aspect-ratio:16/9;max-height:78vh;min-height:auto;
+    width:calc(100% - 80px);margin:52px 40px 0;border-radius:18px;
+  }
   .detail-head{padding:56px 40px 0;}
   .detail-head--top{padding:52px 40px 0;}
   .detail-tag{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
@@ -120,7 +123,7 @@
     .sb-cards{max-height:none;}
     main{margin-left:0;}
     .detail-hero{height:42vh;}
-    .detail-hero--intro{height:56vh;}
+    .detail-hero--intro{width:calc(100% - 40px);margin:32px 20px 0;border-radius:14px;max-height:56vh;}
     .detail-head{padding:40px 20px 0;}
     .detail-head--top{padding:36px 20px 0;}
     .detail-meta-grid{grid-template-columns:1fr 1fr;margin:40px 20px 0;gap:20px 16px;}
