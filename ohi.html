@@ -121,7 +121,13 @@
   .detail-gallery .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;}
 
   .detail-figure{padding:60px 40px 0;}
+  .detail-figure .frame{position:relative;}
   .detail-figure img{width:100%;border-radius:10px;display:block;background:var(--bg-soft);}
+  .detail-figure .overlay-label{
+    position:absolute;top:22px;left:22px;
+    font-size:11px;font-weight:300;letter-spacing:.22em;text-transform:uppercase;
+    color:rgba(255,255,255,.55);
+  }
   .detail-figure .cap{margin-top:14px;font-size:16px;line-height:1.6;color:var(--text);white-space:nowrap;}
 
   .detail-section{padding:20px 40px 80px;}
@@ -265,7 +271,10 @@
 </div>
 
 <div class="detail-figure">
-  <img src="ohi-umbrella-night2.jpg" alt="오하이 우산 야간 착용">
+  <div class="frame">
+    <img src="ohi-umbrella-night2.jpg" alt="오하이 우산 야간 착용">
+    <span class="overlay-label">Background</span>
+  </div>
   <p class="cap">어두운 옷과 우산, 젖은 도로가 겹치는 비 오는 밤에는 보행자가 운전자 시야에서 쉽게 사라집니다.</p>
 </div>
 
