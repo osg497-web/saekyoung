@@ -75,18 +75,38 @@
 
   /* ---------- detail page ---------- */
   .detail-hero{width:100%;height:64vh;min-height:360px;object-fit:cover;display:block;filter:saturate(1.05);}
+  .detail-hero--intro{
+    height:auto;aspect-ratio:16/9;max-height:78vh;min-height:auto;
+    width:calc(100% - 80px);margin:52px 40px 0;border-radius:18px;
+  }
   .detail-head{padding:56px 40px 0;}
+  .detail-head--top{padding:52px 40px 0;}
   .detail-tag{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
   .detail-title{font-family:'Fraunces',serif;font-size:clamp(32px,5vw,60px);font-weight:400;}
   .detail-year{font-size:14px;color:var(--text-faint);margin-top:12px;}
   .detail-lede{margin-top:34px;font-size:19px;line-height:1.7;color:var(--text);max-width:72ch;}
   .detail-body{margin-top:16px;font-size:15px;line-height:1.85;color:var(--text-dim);max-width:72ch;}
 
+  /* ---------- two-column intro (narinkim style) ---------- */
+  .detail-intro-split{
+    display:grid;grid-template-columns:260px 1fr;gap:40px;
+    padding:52px 40px 0;align-items:start;
+  }
+  .detail-intro-left .name-year{font-size:19px;font-weight:600;color:var(--text);}
+  .detail-intro-left .cat{font-size:15px;color:var(--text-dim);margin-top:10px;line-height:1.5;}
+  .detail-intro-right p{font-size:15px;line-height:1.75;color:var(--text);max-width:none;}
+  .detail-intro-right p + p{margin-top:22px;color:var(--text-dim);font-size:15px;line-height:1.85;max-width:none;}
+  .detail-intro-right p.en{
+    margin-top:26px;padding-top:22px;border-top:1px solid var(--line);
+    font-style:italic;color:var(--text-faint);font-size:14px;line-height:1.8;max-width:none;
+  }
+
   .detail-meta-grid{
-    display:grid;grid-template-columns:repeat(5,1fr);gap:20px;
+    display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px 24px;
     margin:56px 40px 0;padding:28px 0;
     border-top:1px solid var(--line);border-bottom:1px solid var(--line);
   }
+  .detail-meta-grid div{flex:0 0 auto;}
   .detail-meta-grid div span{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);margin-bottom:8px;}
   .detail-meta-grid div p{font-size:14px;color:var(--text);line-height:1.5;}
 
@@ -110,6 +130,17 @@
   }
   .detail-back a:hover{color:var(--accent);}
 
+  @media(max-width:1100px){
+    .detail-intro-split{grid-template-columns:220px 1fr;gap:28px;}
+    .detail-meta-grid{gap:20px 36px;}
+  }
+
+  @media(max-width:940px){
+    .detail-intro-split{grid-template-columns:1fr;gap:14px;}
+    .detail-intro-left .cat br{display:none;}
+    .detail-intro-left .cat{margin-top:4px;}
+  }
+
   @media(max-width:860px){
     .sidebar{
       position:relative;width:100%;height:auto;border-right:none;border-bottom:1px solid var(--line);
@@ -118,8 +149,11 @@
     .sb-cards{max-height:none;}
     main{margin-left:0;}
     .detail-hero{height:42vh;}
+    .detail-hero--intro{width:calc(100% - 40px);margin:32px 20px 0;border-radius:14px;max-height:56vh;}
     .detail-head{padding:40px 20px 0;}
-    .detail-meta-grid{grid-template-columns:1fr 1fr;margin:40px 20px 0;gap:20px 16px;}
+    .detail-head--top{padding:36px 20px 0;}
+    .detail-intro-split{grid-template-columns:1fr;gap:16px;padding:36px 20px 0;}
+    .detail-meta-grid{margin:40px 20px 0;gap:18px 28px;}
     .detail-gallery{padding:40px 20px 10px;}
     .detail-gallery .row2, .detail-gallery .row3{grid-template-columns:1fr;}
     .detail-section{padding:10px 20px 60px;}
@@ -197,15 +231,18 @@
 
 <main>
 
-<img class="detail-hero" src="https://osg497-web.github.io/willog-rebrand-devicepackaging.png" alt="Willog">
+<img class="detail-hero detail-hero--intro" src="https://osg497-web.github.io/willog-rebrand-devicepackaging.png" alt="Willog">
 
-<div class="detail-head">
-  <div class="detail-tag">BX Design · In-house</div>
-  <h1 class="detail-title">Willog</h1>
-  <div class="detail-year">2025.04 — 2026.02</div>
-
-  <p class="detail-lede">물류 모니터링 중심의 이미지를 넘어, AIoT 기반 데이터 예측 역량을 갖춘 글로벌 공급망 인텔리전스 플랫폼으로의 전환을 위한 브랜드 리뉴얼 프로젝트.</p>
-  <p class="detail-body">전방위 가시성과 데이터 통합을 상징하는 일관된 브랜드 아이덴티티와 시각 언어를 구축했고, 사내 PPT 디자인 시스템 구축과 회사소개서 리디자인까지 이어진 통합 브랜딩 작업이었어요.</p>
+<div class="detail-intro-split">
+  <div class="detail-intro-left">
+    <div class="name-year">Willog, 2025</div>
+    <div class="cat">BX Design<br>In-house</div>
+  </div>
+  <div class="detail-intro-right">
+    <p>물류 모니터링 중심의 이미지를 넘어, AIoT 기반 데이터 예측 역량을 갖춘 글로벌 공급망 인텔리전스 플랫폼으로의 전환을 위한 브랜드 리뉴얼 프로젝트.</p>
+    <p>전방위 가시성과 데이터 통합을 상징하는 일관된 브랜드 아이덴티티와 시각 언어를 구축했고, 사내 PPT 디자인 시스템 구축과 회사소개서 리디자인까지 이어진 통합 브랜딩 작업이었어요.</p>
+    <p class="en">A brand renewal project moving Willog beyond a logistics-monitoring image toward a global supply-chain intelligence platform powered by AIoT-based data prediction. The rebrand built a consistent identity and visual language around full visibility and data integration, extending into an internal PPT design system and a redesigned company profile.</p>
+  </div>
 </div>
 
 <div class="detail-meta-grid">
