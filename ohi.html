@@ -158,6 +158,11 @@
   .stat-value{font-size:clamp(30px,4vw,46px);font-weight:700;color:var(--text);letter-spacing:-.01em;}
   .stat-source{font-size:12px;color:var(--text-faint);}
 
+  .shape-card{justify-content:flex-start;gap:14px;}
+  .shape-card .shape-icon{width:36px;height:36px;color:var(--text);flex-shrink:0;}
+  .shape-card .stat-label{font-size:18px;color:var(--text);font-weight:600;}
+  .shape-card .shape-desc{font-size:14px;line-height:1.6;color:var(--text-dim);}
+
   .detail-insight{padding:60px 40px 0;}
   .detail-insight .insight-text{font-size:16px;line-height:1.6;color:var(--text);white-space:nowrap;}
   .detail-insight + .detail-figure{padding-top:14px;}
@@ -413,9 +418,27 @@
 </div>
 
 <div class="detail-squares">
-  <div class="sq stat"></div>
-  <div class="sq stat"></div>
-  <div class="sq stat"></div>
+  <div class="sq stat shape-card">
+    <svg class="shape-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M24 6C24 6 12 22 12 30C12 36.6274 17.3726 42 24 42C30.6274 42 36 36.6274 36 30C36 22 24 6 24 6Z" stroke="currentColor" stroke-width="2.2"/>
+    </svg>
+    <div class="stat-label">빗방울 원형</div>
+    <p class="shape-desc">빗방울의 원형을 활용한 형태 구성</p>
+  </div>
+  <div class="sq stat shape-card">
+    <svg class="shape-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="8" width="32" height="32" rx="10" stroke="currentColor" stroke-width="2.2"/>
+    </svg>
+    <div class="stat-label">부드러운 모서리</div>
+    <p class="shape-desc">모든 모서리를 동일한 반지름으로 처리하여 통일감 유지</p>
+  </div>
+  <div class="sq stat shape-card">
+    <svg class="shape-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 24C6 24 10 12 17 12C24 12 24 24 24 24C24 24 24 12 31 12C38 12 42 24 42 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+    </svg>
+    <div class="stat-label">우산 곡선</div>
+    <p class="shape-desc">우산 가장자리의 스캘럽 곡선을 적용한 부드러운 라인</p>
+  </div>
 </div>
 
 <div class="detail-back">
