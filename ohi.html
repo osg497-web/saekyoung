@@ -121,8 +121,9 @@
   .detail-gallery .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;}
 
   .detail-figure{padding:60px 40px 0;}
-  .detail-figure .frame{position:relative;margin-top:14px;}
-  .detail-figure img{width:100%;border-radius:10px;display:block;background:var(--bg-soft);}
+  .detail-figure .frame{position:relative;overflow:hidden;border-radius:10px;}
+  .detail-figure .cap + .frame{margin-top:14px;}
+  .detail-figure img{width:100%;display:block;background:var(--bg-soft);transform:scale(1.03);transform-origin:center;}
   .detail-figure .cap{
     margin:0;font-size:16px;line-height:1.6;color:var(--text);white-space:nowrap;
   }
@@ -146,10 +147,10 @@
 
   .detail-feature{
     display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;
-    padding:60px 40px 0;
+    padding:14px 40px 0;
   }
   .detail-feature .feature-img img{width:100%;border-radius:10px;display:block;background:var(--bg-soft);}
-  .detail-feature .feature-text h3{font-family:'Fraunces',serif;font-size:clamp(22px,3vw,30px);font-weight:400;margin-bottom:18px;}
+  .detail-feature .feature-text h3{font-family:'Pretendard',sans-serif;font-size:clamp(22px,3vw,30px);font-weight:600;margin-bottom:18px;}
   .detail-feature .feature-text p{font-size:16px;line-height:1.85;color:var(--text-dim);max-width:44ch;}
 
   .detail-section{padding:20px 40px 80px;}
@@ -198,7 +199,7 @@
     .detail-squares{padding:14px 20px 0;grid-template-columns:1fr;}
     .detail-insight{padding:36px 20px 0;}
     .detail-insight .insight-text{white-space:normal;}
-    .detail-feature{grid-template-columns:1fr;gap:24px;padding:36px 20px 0;}
+    .detail-feature{grid-template-columns:1fr;gap:24px;padding:14px 20px 0;}
     .detail-section{padding:10px 20px 60px;}
     .detail-back{margin:0 20px;padding:10px 0 80px;}
   }
@@ -342,7 +343,7 @@
   </div>
   <div class="feature-text">
     <h3>Halo Line</h3>
-    <p>우산 가장자리를 따라 적용된 재귀반사 소재는<br>낮에는 디자인의 일부가 되고,<br>밤에는 보행자의 존재를 드러냅니다.</p>
+    <p>우산 가장자리를 따라 적용된 재귀반사 소재는<br>어두운 밤에 보행자의 존재를 드러냅니다.</p>
   </div>
 </div>
 
