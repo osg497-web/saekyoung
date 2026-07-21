@@ -124,6 +124,12 @@
   .detail-figure .frame{position:relative;overflow:hidden;border-radius:10px;}
   .detail-figure .cap + .frame{margin-top:14px;}
   .detail-figure img{width:100%;display:block;background:var(--bg-soft);transform:scale(1.03);transform-origin:center;}
+  .detail-figure img.no-scale{transform:none;}
+  .frame--small{
+    padding:40px;display:flex;align-items:center;justify-content:center;
+    background:var(--bg-soft);border:1px solid var(--line);
+  }
+  .frame--small img.no-scale{width:75%;}
 
   .canopy-label{
     position:absolute;top:50%;transform:translateY(-50%);
@@ -394,8 +400,8 @@
 </div>
 
 <div class="detail-figure">
-  <div class="frame">
-    <img src="ohi-logo-grid.jpg" alt="오하이 로고 그리드 가이드">
+  <div class="frame frame--small">
+    <img class="no-scale" src="ohi-logo-grid.png" alt="오하이 로고 그리드 가이드">
   </div>
 </div>
 
