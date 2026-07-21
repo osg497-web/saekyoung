@@ -129,7 +129,7 @@
     padding:40px;display:flex;align-items:center;justify-content:center;
     background:var(--bg-soft);border:1px solid var(--line);
   }
-  .frame--small img.no-scale{width:75%;}
+  .frame--small img.no-scale{width:67.5%;}
 
   .canopy-label{
     position:absolute;top:50%;transform:translateY(-50%);
@@ -151,17 +151,30 @@
   }
 
   .detail-squares{padding:14px 40px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-  .detail-squares .sq{aspect-ratio:25/16;border-radius:10px;overflow:hidden;background:var(--bg-soft);border:1px solid var(--line);}
+  .detail-squares .sq{height:240px;border-radius:10px;overflow:hidden;background:var(--bg-soft);border:1px solid var(--line);}
   .detail-squares .sq img{width:100%;height:100%;object-fit:cover;display:block;}
   .detail-squares .sq.stat{display:flex;flex-direction:column;justify-content:space-between;padding:26px;}
   .stat-label{font-size:15px;color:var(--text-dim);line-height:1.4;}
   .stat-value{font-size:clamp(30px,4vw,46px);font-weight:700;color:var(--text);letter-spacing:-.01em;}
   .stat-source{font-size:12px;color:var(--text-faint);}
 
-  .shape-card{justify-content:flex-start;gap:14px;}
+  .sq.shape-card{justify-content:flex-start;gap:14px;}
   .shape-card .shape-icon{width:36px;height:36px;color:var(--text);flex-shrink:0;}
   .shape-card .stat-label{font-size:18px;color:var(--text);font-weight:600;}
   .shape-card .shape-desc{font-size:14px;line-height:1.6;color:var(--text-dim);}
+
+  .detail-colors{
+    display:grid;grid-template-columns:2fr 3fr;gap:40px;
+    padding:14px 40px 0;
+  }
+  .color-group-title{font-size:15px;color:var(--text-faint);margin-bottom:14px;}
+  .color-row{display:flex;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--line);}
+  .color-chip{flex:1;height:240px;padding:20px;display:flex;flex-direction:column;justify-content:flex-end;}
+  .chip-info{display:flex;flex-direction:column;gap:2px;}
+  .chip-name{font-size:14px;font-weight:600;}
+  .chip-code{font-size:12px;}
+  .color-chip.on-dark .chip-name,.color-chip.on-dark .chip-code{color:#fff;}
+  .color-chip.on-light .chip-name,.color-chip.on-light .chip-code{color:#111;}
 
   .detail-insight{padding:60px 40px 0;}
   .detail-insight .insight-text{font-size:16px;line-height:1.6;color:var(--text);white-space:nowrap;}
@@ -234,6 +247,7 @@
     .detail-figure{padding:40px 20px 0;}
     .detail-figure .cap{white-space:normal;}
     .detail-squares{padding:14px 20px 0;grid-template-columns:1fr;}
+    .detail-colors{padding:14px 20px 0;grid-template-columns:1fr;gap:24px;}
     .detail-shapes{padding:14px 20px 0;gap:14px;flex-direction:column;}
     .shape-arrow{transform:rotate(90deg);}
     .detail-insight{padding:36px 20px 0;}
@@ -438,6 +452,38 @@
     </svg>
     <div class="stat-label">우산 곡선</div>
     <p class="shape-desc">우산 가장자리의 스캘럽 곡선을 적용한 부드러운 라인</p>
+  </div>
+</div>
+
+<div class="detail-insight">
+  <span class="cap-label">Color</span>
+</div>
+
+<div class="detail-colors">
+  <div class="color-group">
+    <div class="color-group-title">Primary Color</div>
+    <div class="color-row">
+      <div class="color-chip on-dark" style="background:#000000;">
+        <div class="chip-info"><span class="chip-name">Black</span><span class="chip-code">#000000</span><span class="chip-code">Black 6 C</span></div>
+      </div>
+      <div class="color-chip on-light" style="background:#FFFFFF;">
+        <div class="chip-info"><span class="chip-name">White</span><span class="chip-code">#FFFFFF</span><span class="chip-code">Cloud Dancer</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="color-group">
+    <div class="color-group-title">Secondary Color</div>
+    <div class="color-row">
+      <div class="color-chip on-light" style="background:#F2B844;">
+        <div class="chip-info"><span class="chip-name">Ohi Yellow</span><span class="chip-code">#F2B844</span><span class="chip-code">142 C</span></div>
+      </div>
+      <div class="color-chip on-light" style="background:#D9D9D9;">
+        <div class="chip-info"><span class="chip-name">Bright Grey</span><span class="chip-code">#D9D9D9</span><span class="chip-code">420 C</span></div>
+      </div>
+      <div class="color-chip on-dark" style="background:#999999;">
+        <div class="chip-info"><span class="chip-name">Grey</span><span class="chip-code">#999999</span><span class="chip-code">4289 C</span></div>
+      </div>
+    </div>
   </div>
 </div>
 
