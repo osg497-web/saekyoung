@@ -124,6 +124,17 @@
   .detail-figure .frame{position:relative;overflow:hidden;border-radius:10px;}
   .detail-figure .cap + .frame{margin-top:14px;}
   .detail-figure img{width:100%;display:block;background:var(--bg-soft);transform:scale(1.03);transform-origin:center;}
+
+  .canopy-label{
+    position:absolute;top:50%;transform:translateY(-50%);
+    font-size:15px;font-weight:600;letter-spacing:-.01em;
+    opacity:0;transition:opacity .8s ease, transform .8s ease;
+    z-index:2;
+  }
+  .label-day{left:6%;color:#2b2b28;transform:translateY(-50%) translateX(-12px);}
+  .label-night{right:6%;color:#f2f2ef;transform:translateY(-50%) translateX(12px);}
+  .canopy-motion.in-view .label-day{opacity:1;transform:translateY(-50%) translateX(0);transition-delay:.2s;}
+  .canopy-motion.in-view .label-night{opacity:1;transform:translateY(-50%) translateX(0);transition-delay:1.1s;}
   .detail-figure .cap{
     margin:0;font-size:16px;line-height:1.6;color:var(--text);white-space:nowrap;
   }
@@ -334,8 +345,10 @@
 </div>
 
 <div class="detail-figure">
-  <div class="frame">
+  <div class="frame canopy-motion" id="canopyMotion">
     <img src="ohi-canopy-design.jpg" alt="오하이 캐노피 디자인 - 낮에는 차분하게, 밤에는 선명하게">
+    <span class="canopy-label label-day">낮에는 차분하게</span>
+    <span class="canopy-label label-night">밤에는 선명하게</span>
   </div>
 </div>
 
@@ -354,6 +367,20 @@
 </div>
 
 <script>
+  (function(){
+    const el = document.getElementById('canopyMotion');
+    if(!el) return;
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          el.classList.add('in-view');
+          io.unobserve(el);
+        }
+      });
+    }, {threshold:0.4});
+    io.observe(el);
+  })();
+
   function updateClock(){
     const now = new Date();
     const seoul = new Intl.DateTimeFormat('en-GB', {
