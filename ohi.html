@@ -122,8 +122,16 @@
 
   .detail-figure{padding:60px 40px 0;}
   .detail-figure .frame{position:relative;}
+  .detail-figure .frame::after{
+    content:"";position:absolute;left:0;right:0;bottom:0;height:40%;
+    background:linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,0));
+    border-radius:0 0 10px 10px;pointer-events:none;
+  }
   .detail-figure img{width:100%;border-radius:10px;display:block;background:var(--bg-soft);}
-  .detail-figure .cap{margin-top:14px;font-size:16px;line-height:1.6;color:var(--text);white-space:nowrap;}
+  .detail-figure .cap{
+    position:absolute;left:24px;right:24px;bottom:20px;z-index:2;
+    margin:0;font-size:16px;line-height:1.6;color:var(--text);white-space:nowrap;
+  }
   .detail-figure .cap-label{
     display:inline-block;margin-right:14px;
     font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
@@ -180,7 +188,7 @@
     .detail-gallery{padding:40px 20px 10px;}
     .detail-gallery .row2, .detail-gallery .row3{grid-template-columns:1fr;}
     .detail-figure{padding:40px 20px 0;}
-    .detail-figure .cap{white-space:normal;}
+    .detail-figure .cap{white-space:normal;left:16px;right:16px;bottom:14px;font-size:14px;}
     .detail-squares{padding:24px 20px 0;grid-template-columns:1fr;}
     .detail-section{padding:10px 20px 60px;}
     .detail-back{margin:0 20px;padding:10px 0 80px;}
@@ -281,8 +289,8 @@
 <div class="detail-figure">
   <div class="frame">
     <img src="ohi-umbrella-night2.jpg" alt="오하이 우산 야간 착용">
+    <p class="cap"><span class="cap-label">Background</span>비 오는 밤, 어두운 우산과 옷은 보행자를 운전자 시야에서 쉽게 사라지게 합니다.</p>
   </div>
-  <p class="cap"><span class="cap-label">Background</span>비 오는 밤, 어두운 우산과 옷은 보행자를 운전자 시야에서 쉽게 사라지게 합니다.</p>
 </div>
 
 <div class="detail-squares">
