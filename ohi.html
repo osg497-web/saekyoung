@@ -156,6 +156,17 @@
   .detail-insight .insight-text{font-size:16px;line-height:1.6;color:var(--text);white-space:nowrap;}
   .detail-insight + .detail-figure{padding-top:14px;}
 
+  .detail-shapes{
+    display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;
+    padding:14px 40px 0;
+  }
+  .shape-box{
+    aspect-ratio:1/1;border-radius:10px;background:var(--bg-soft);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;padding:40px;
+  }
+  .shape-box img{width:60%;height:60%;object-fit:contain;display:block;animation:shapeSpin 22s linear infinite;}
+  @keyframes shapeSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+
   .detail-feature{
     display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;
     padding:40px 40px 0;
@@ -210,6 +221,7 @@
     .detail-figure{padding:40px 20px 0;}
     .detail-figure .cap{white-space:normal;}
     .detail-squares{padding:14px 20px 0;grid-template-columns:1fr;}
+    .detail-shapes{padding:14px 20px 0;gap:14px;grid-template-columns:1fr;}
     .detail-insight{padding:36px 20px 0;}
     .detail-insight .insight-text{white-space:normal;}
     .detail-feature{grid-template-columns:1fr;gap:24px;padding:14px 20px 0;}
@@ -368,10 +380,10 @@
   <span class="insight-text">우산의 스캘럽 형태를 단순화하여, 브랜드 전반을 연결하는 시그니처 형태로 확장했습니다.</span>
 </div>
 
-<div class="detail-figure">
-  <div class="frame">
-    <img src="ohi-application.jpg" alt="오하이 우산 - 블랙 & 옐로우 컬러 적용샷">
-  </div>
+<div class="detail-shapes">
+  <div class="shape-box"><img src="ohi-umbrella-topview.png" alt="오하이 우산 탑뷰 - 블랙"></div>
+  <div class="shape-box"><img src="ohi-signature-shape-filled.png" alt="오하이 시그니처 셰이프 - 채워진 스캘럽 형태"></div>
+  <div class="shape-box"><img src="ohi-signature-shape-outline.png" alt="오하이 시그니처 셰이프 - 아웃라인 스캘럽 형태"></div>
 </div>
 
 <div class="detail-back">
