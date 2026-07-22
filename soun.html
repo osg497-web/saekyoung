@@ -129,6 +129,51 @@
   .detail-insight-wrap .story-image{border-radius:16px;overflow:hidden;height:800px;}
   .detail-insight-wrap .story-image img{width:100%;height:100%;object-fit:cover;display:block;}
 
+  .detail-core-wrap{padding:56px 40px 60px;}
+  .detail-core-wrap .core-head{display:grid;grid-template-columns:170px 1fr;gap:20px;align-items:start;}
+  .detail-core-wrap .bg-label{
+    font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent);padding-top:3px;
+  }
+  .core-grid{margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .core-circle{
+    aspect-ratio:1/1;border-radius:50%;background:var(--panel);border:1px solid var(--line);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:32px;
+  }
+  .core-circle .core-title{font-family:'Fraunces',serif;font-size:24px;font-weight:600;color:var(--text);}
+  .core-circle .core-sub{font-size:14px;color:var(--text-dim);margin-top:4px;}
+  .core-circle .core-desc{font-size:14px;line-height:1.6;color:var(--text-dim);margin-top:16px;}
+
+  .detail-material-wrap{padding:56px 40px 60px;}
+  .detail-material-wrap .material-head{display:grid;grid-template-columns:170px 1fr;gap:20px;align-items:start;}
+  .detail-material-wrap .bg-label{
+    font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent);padding-top:3px;
+  }
+  .material-grid{margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .material-card{
+    background:var(--panel);border:1px solid var(--line);border-radius:16px;
+    padding:24px;height:800px;display:flex;flex-direction:column;overflow:hidden;
+  }
+  .material-card .material-img{border-radius:10px;overflow:hidden;flex:1;min-height:0;}
+  .material-card .material-img img{width:100%;height:100%;object-fit:cover;display:block;}
+  .material-card .material-title{font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--text);margin-top:20px;}
+  .material-card .material-num{display:block;font-size:13px;color:var(--text-dim);margin-top:4px;}
+  .material-card .material-divider{border-top:1px solid var(--line);margin-top:14px;}
+  .material-card .material-desc{font-size:14px;line-height:1.6;color:var(--text-dim);margin-top:14px;}
+
+  @media(max-width:860px){
+    .detail-material-wrap{padding:36px 20px 40px;}
+    .material-grid{grid-template-columns:1fr;gap:20px;}
+    .material-card{height:800px;}
+  }
+
+  @media(max-width:860px){
+    .detail-core-wrap{padding:36px 20px 40px;}
+    .core-grid{grid-template-columns:1fr;gap:20px;}
+  }
+
   @media(max-width:860px){
     .detail-background-wrap{padding:40px 20px 0;}
     .detail-insight-wrap{padding:36px 20px 0;}
@@ -299,6 +344,58 @@
     </div>
     <div class="story-image">
       <img src="soun-story.jpg" alt="소운탕 브랜드 스토리 - 대리석 욕조 계단">
+    </div>
+  </div>
+</div>
+
+<div class="detail-core-wrap">
+  <div class="core-head">
+    <span class="bg-label">Brand Core</span>
+  </div>
+  <div class="core-grid">
+    <div class="core-circle">
+      <div class="core-title">고요</div>
+      <div class="core-sub">(Calm)</div>
+      <div class="core-desc">도시 속의 불필요한<br>소음에서 벗어나<br>고요한 시간을 가집니다.</div>
+    </div>
+    <div class="core-circle">
+      <div class="core-title">본질</div>
+      <div class="core-sub">(Simplicity)</div>
+      <div class="core-desc">고요하고 편안한 공간 속에서<br>불필요한 요소를 덜어내고,<br>목욕과 휴식의 본질에<br>집중합니다.</div>
+    </div>
+    <div class="core-circle">
+      <div class="core-title">자연</div>
+      <div class="core-sub">(Nature)</div>
+      <div class="core-desc">소운탕 속의 자연을 보고 느끼며<br>긴장되어있던 마음을<br>천천히 이완합니다.</div>
+    </div>
+  </div>
+</div>
+
+<div class="detail-material-wrap">
+  <div class="material-head">
+    <span class="bg-label">Material Language</span>
+  </div>
+  <div class="material-grid">
+    <div class="material-card">
+      <div class="material-img"><img src="soun-material-1.jpg" alt="소운탕 소재 - 종이 조명"></div>
+      <div class="material-title">Light</div>
+      <span class="material-num">빛 (조명)</span>
+      <div class="material-divider"></div>
+      <div class="material-desc">은은한 빛은 감각을 차분하게 가라앉히고, 마음을 안정시킵니다.</div>
+    </div>
+    <div class="material-card">
+      <div class="material-img"><img src="soun-material-2.jpg" alt="소운탕 소재 - 물과 조명"></div>
+      <div class="material-title">Water</div>
+      <span class="material-num">물</span>
+      <div class="material-divider"></div>
+      <div class="material-desc">물은 불필요한 것을 씻어내고, 몸과 마음을 이완시켜 본연의 상태로 돌아가게 합니다.</div>
+    </div>
+    <div class="material-card">
+      <div class="material-img"><img src="soun-material-3.jpg" alt="소운탕 소재 - 원목과 돌"></div>
+      <div class="material-title">Wood · Stone</div>
+      <span class="material-num">나무 · 돌</span>
+      <div class="material-divider"></div>
+      <div class="material-desc">자연의 질감을 담은 소재는 도시의 긴장을 완화하고, 안정감과 편안함을 줍니다.</div>
     </div>
   </div>
 </div>
