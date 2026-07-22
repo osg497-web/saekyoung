@@ -175,7 +175,7 @@
     display:block;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
     color:var(--text-dim);margin-top:24px;margin-bottom:20px;
   }
-  .logo-slider{position:relative;border-radius:16px;overflow:hidden;height:800px;background:#FAF5ED;}
+  .logo-slider{position:relative;border-radius:16px;overflow:hidden;height:800px;background:#FAF5ED;margin-top:24px;}
   .logo-slider .logo-track{display:flex;width:300%;height:100%;transition:transform .5s cubic-bezier(.4,0,.2,1);}
   .logo-slider .logo-slide{width:33.3333%;height:100%;flex:0 0 33.3333%;display:flex;align-items:center;justify-content:center;padding:80px;box-sizing:border-box;}
   .logo-slider .logo-slide img{max-width:100%;max-height:100%;object-fit:contain;display:block;}
@@ -227,6 +227,34 @@
   .detail-swatch{width:110px;}
   .detail-swatch .chip{width:100%;height:66px;border-radius:6px;border:1px solid var(--line);}
   .detail-swatch p{margin-top:8px;font-size:11.5px;color:var(--text-dim);line-height:1.5;}
+
+  .detail-color-wrap{padding:24px 40px 0;}
+  .detail-color-wrap .color-head{display:grid;grid-template-columns:170px 1fr;gap:20px;align-items:start;}
+  .detail-color-wrap .bg-label{
+    font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent);padding-top:3px;
+  }
+  .detail-color-wrap .detail-swatches{margin-top:0;}
+  .color-card-grid{margin-top:0;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+  .color-card{height:800px;border-radius:16px;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:flex-end;padding:24px;box-sizing:border-box;}
+  .color-card p{font-size:13px;line-height:1.5;}
+
+  .detail-type-wrap{padding:24px 40px 0;}
+  .type-card-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .type-card{height:800px;border-radius:16px;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;padding:56px;box-sizing:border-box;}
+  .type-card.light{background:#FAF5ED;}
+  .type-card .type-title{font-size:56px;font-weight:700;color:#111;line-height:1.1;}
+  .type-card .type-sub{margin-top:16px;font-size:20px;color:#333;}
+
+  @media(max-width:860px){
+    .detail-type-wrap{padding:24px 20px 0;}
+    .type-card-grid{grid-template-columns:1fr;gap:20px;}
+  }
+
+  @media(max-width:860px){
+    .detail-color-wrap{padding:36px 20px 40px;}
+    .color-card-grid{grid-template-columns:1fr;gap:20px;}
+  }
 
   .detail-back{padding:20px 40px 110px;border-top:1px solid var(--line);margin:0 40px;}
   .detail-back a{
@@ -439,7 +467,6 @@
   <div class="identity-head">
     <span class="bg-label">Brand Identity</span>
   </div>
-  <span class="identity-sub-label">Logo/Simbol</span>
   <div class="logo-slider" id="logoSlider">
     <div class="logo-track" id="logoTrack">
       <div class="logo-slide">
@@ -460,8 +487,24 @@
       <span class="logo-dot" onclick="logoGo(2)"></span>
     </div>
   </div>
-  <div class="detail-identity">
-    <img src="soun-identity.jpg" alt="소운탕 브랜드 아이덴티티">
+</div>
+
+<div class="detail-color-wrap">
+  <div class="color-card-grid">
+    <div class="color-card" style="background:#202020;"><p style="color:#f3f1ea;">Pantone 419 C<br>#202020</p></div>
+    <div class="color-card" style="background:#DB0F0F;"><p style="color:#fff;">Pantone 2347 C<br>#DB0F0F</p></div>
+    <div class="color-card" style="background:#BEBEBE;"><p style="color:#202020;">Cool Gray 4 C<br>#BEBEBE</p></div>
+    <div class="color-card" style="background:#5DAC93;"><p style="color:#0e1f1a;">Pantone 2459 C<br>#5DAC93</p></div>
+  </div>
+</div>
+
+<div class="detail-type-wrap">
+  <div class="type-card-grid">
+    <div class="type-card light">
+      <div class="type-title" style="font-family:'HANAMDAUM','Noto Sans KR',sans-serif;">HANAMDAUM</div>
+      <div class="type-sub" style="color:#333;font-family:'HANAMDAUM','Noto Sans KR',sans-serif;">Regular/Medium/Semi Bold</div>
+    </div>
+    <div class="type-card"></div>
   </div>
 </div>
 
