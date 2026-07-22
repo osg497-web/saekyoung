@@ -158,7 +158,7 @@
   }
   .material-card .material-img{border-radius:10px;overflow:hidden;flex:1;min-height:0;}
   .material-card .material-img img{width:100%;height:100%;object-fit:cover;display:block;}
-  .material-card .material-title{font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--text);margin-top:20px;}
+  .material-card .material-title{font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:22px;font-weight:600;color:var(--text);margin-top:20px;}
   .material-card .material-num{display:block;font-size:13px;color:var(--text-dim);margin-top:4px;}
   .material-card .material-divider{border-top:1px solid var(--line);margin-top:14px;}
   .material-card .material-desc{font-size:14px;line-height:1.6;color:var(--text-dim);margin-top:14px;}
@@ -268,6 +268,21 @@
   .guide-slider .logo-dots{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:2;}
   .guide-slider .logo-dot{width:7px;height:7px;border-radius:50%;background:rgba(20,18,15,.25);cursor:pointer;transition:background .2s;}
   .guide-slider .logo-dot.active{background:rgba(20,18,15,.7);}
+
+  .detail-space-wrap{padding:24px 40px 60px;}
+  .detail-space-wrap .space-head{display:grid;grid-template-columns:170px 1fr;gap:20px;align-items:start;}
+  .detail-space-wrap .bg-label{
+    font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent);padding-top:3px;
+  }
+  .detail-space{border-radius:16px;overflow:hidden;margin-top:24px;height:800px;background:#fff;}
+  .detail-space img{width:100%;height:100%;object-fit:contain;display:block;transform:scale(0.9);}
+  .detail-space--photo{background:none;}
+  .detail-space--photo img{object-fit:cover;transform:none;}
+
+  @media(max-width:860px){
+    .detail-space-wrap{padding:24px 20px 40px;}
+  }
   .detail-guide img{width:100%;height:100%;object-fit:contain;display:block;transform:scale(0.7);}
 
   @media(max-width:860px){
@@ -552,6 +567,24 @@
       <span class="logo-dot active" onclick="guideGo(0)"></span>
       <span class="logo-dot" onclick="guideGo(1)"></span>
     </div>
+  </div>
+</div>
+
+<div class="detail-space-wrap">
+  <div class="space-head">
+    <span class="bg-label">Space</span>
+  </div>
+  <div class="detail-space">
+    <img src="soun-space.svg" alt="소운탕 공간 도면">
+  </div>
+  <div class="detail-space detail-space--photo" style="margin-top:24px;">
+    <img src="soun-space-2.svg" alt="소운탕 공간 이미지">
+  </div>
+  <div class="detail-space detail-space--photo" style="margin-top:24px;">
+    <img src="soun-space-3.svg" alt="소운탕 공간 이미지 2">
+  </div>
+  <div class="detail-space detail-space--photo" style="margin-top:24px;">
+    <img src="soun-space-4.svg" alt="소운탕 공간 이미지 3">
   </div>
 </div>
 
