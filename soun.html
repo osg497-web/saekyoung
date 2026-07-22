@@ -118,8 +118,20 @@
   .detail-background{border-radius:16px;overflow:hidden;margin-top:24px;}
   .detail-background img{width:100%;height:auto;display:block;}
 
+  .detail-insight-wrap{padding:56px 40px 0;}
+  .detail-insight-wrap .story-grid{display:grid;grid-template-columns:1fr 2fr;gap:40px;align-items:start;}
+  .detail-insight-wrap .bg-label{
+    display:block;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:16px;
+  }
+  .detail-insight-wrap .bg-cap{display:block;font-size:18px;line-height:1.6;color:var(--text);}
+  .detail-insight-wrap .story-image{border-radius:16px;overflow:hidden;}
+  .detail-insight-wrap .story-image img{width:100%;height:100%;object-fit:cover;display:block;}
+
   @media(max-width:860px){
     .detail-background-wrap{padding:40px 20px 0;}
+    .detail-insight-wrap{padding:36px 20px 0;}
+    .detail-insight-wrap .story-grid{grid-template-columns:1fr;gap:24px;}
   }
 
   .detail-gallery{padding:60px 40px 20px;display:flex;flex-direction:column;gap:20px;}
@@ -268,12 +280,25 @@
   <div class="bg-head">
     <span class="bg-label">Background</span>
     <div class="bg-text">
-      <span class="bg-cap">도시의 빠른 일상 속에서, 우리는 충분히 쉬지 못합니다. 현대인은 끊임없는 자극과 빠른 속도 속에서 살아갑니다. 몸의 피로보다 마음의 긴장이 먼저 쌓이고, 온전히 쉬는 시간은 점점 부족해지고 있습니다.</span>
+      <span class="bg-cap">도시의 빠른 일상 속에서, 우리는 충분히 쉬지 못합니다.</span>
+      <span class="bg-cap">현대인은 끊임없는 자극과 빠른 속도 속에서 살아갑니다. 몸의 피로보다 마음의 긴장이 먼저 쌓이고, 온전히 쉬는 시간은 점점 부족해지고 있습니다.</span>
       <span class="bg-cap">소운탕은 단순히 몸을 씻는 공간이 아니라, 잠시 멈춰 자신을 회복할 수 있는 공간을 만들고자 시작되었습니다.</span>
     </div>
   </div>
   <div class="detail-background">
     <img src="soun-background.jpg" alt="소운탕 배경 - 대나무 정원이 보이는 온천 공간">
+  </div>
+</div>
+
+<div class="detail-insight-wrap">
+  <div class="story-grid">
+    <div>
+      <span class="bg-label">Brand Story</span>
+      <span class="bg-cap">우리는 하루에도<br>수많은 역할 속에서 살아갑니다.<br>소운탕은<br>잠시 멈추고,<br>몸과 마음이<br>다시 나에게 돌아오는 시간을<br>만들기 위해 시작되었습니다.</span>
+    </div>
+    <div class="story-image">
+      <img src="soun-story.jpg" alt="소운탕 브랜드 스토리 - 대리석 욕조 계단">
+    </div>
   </div>
 </div>
 
