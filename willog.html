@@ -59,6 +59,22 @@
   .sb-card:hover{background:#1f1c18;border-color:var(--line-strong);transform:translateX(3px);}
   .sb-card .t{font-family:'Mako','Pretendard',sans-serif;font-size:14.5px;font-weight:600;color:var(--text);}
   .sb-card .s{font-size:12.5px;color:var(--text-dim);margin-top:3px;}
+  .sb-group{display:flex;flex-direction:column;}
+  button.sb-card{width:100%;text-align:left;font:inherit;cursor:pointer;position:relative;}
+  .sb-card .chev{position:absolute;top:16px;right:16px;width:9px;height:9px;border-right:1.5px solid var(--text-dim);border-bottom:1.5px solid var(--text-dim);transform:rotate(45deg);transition:transform .25s;}
+  .sb-group.open .chev{transform:rotate(-135deg);}
+  .sb-subcards{display:grid;grid-template-rows:0fr;transition:grid-template-rows .28s ease;}
+  .sb-group.open .sb-subcards{grid-template-rows:1fr;}
+  .sb-subcards-inner{overflow:hidden;display:flex;flex-direction:column;gap:8px;padding-top:8px;}
+  .sb-subcard{
+    display:block;background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:12px 16px 12px 22px;margin-left:14px;border-left:2px solid var(--line-strong);
+    transition:background .25s, border-color .25s, transform .25s;
+  }
+  .sb-subcard.active{border-color:var(--accent);}
+  .sb-subcard:hover{background:#1f1c18;border-color:var(--line-strong);transform:translateX(3px);}
+  .sb-subcard .t{font-family:'Mako','Pretendard',sans-serif;font-size:13.5px;font-weight:600;color:var(--text);}
+  .sb-subcard .s{font-size:12px;color:var(--text-dim);margin-top:2px;}
   .sb-foot{margin-top:auto;padding-top:26px;}
   .sb-clock{
     font-family:'Mako','Pretendard',sans-serif;font-size:32px;font-weight:400;font-variant-numeric:tabular-nums;letter-spacing:0.01em;
@@ -206,10 +222,29 @@
   </nav>
 
   <div class="sb-cards">
-    <a class="sb-card active" href="willog.html">
-      <div class="t">Willog</div>
-      <div class="s">Corporate Branding</div>
-    </a>
+    <div class="sb-group open" id="willogGroup">
+      <button type="button" class="sb-card" onclick="document.getElementById('willogGroup').classList.toggle('open')">
+        <div class="t">Willog</div>
+        <div class="s">Practical Work</div>
+        <span class="chev"></span>
+      </button>
+      <div class="sb-subcards">
+        <div class="sb-subcards-inner">
+          <a class="sb-subcard active" href="willog.html">
+            <div class="t">Willog</div>
+            <div class="s">Corporate Branding</div>
+          </a>
+          <a class="sb-subcard" href="willog-ppt.html">
+            <div class="t">Willog</div>
+            <div class="s">2025 PPT Template 3.1ver</div>
+          </a>
+          <a class="sb-subcard" href="willog-intro.html">
+            <div class="t">Willog</div>
+            <div class="s">Company Introduction</div>
+          </a>
+        </div>
+      </div>
+    </div>
     <a class="sb-card " href="soun.html">
       <div class="t">소운탕</div>
       <div class="s">Spatial Branding</div>
