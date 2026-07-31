@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<title>Willog Company Introduction — SaeKyoung</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Iceland&family=Passero+One&family=Menbere:wght@400;600;700&family=Manuale:wght@400;500;600;700&family=Rubik+Mono+One&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#151513;
+    --bg-soft:#141311;
+    --panel:#171613;
+    --text:#f3f1ea;
+    --text-dim:#8f8b80;
+    --text-faint:#5c584f;
+    --accent:#c9a961;
+    --line:rgba(243,241,234,0.12);
+    --line-strong:rgba(243,241,234,0.22);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Pretendard', -apple-system, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--accent);color:#0b0b0a;}
+  a{color:inherit;text-decoration:none;}
+  .serif{font-family:'Fraunces', serif;}
+
+  .sidebar{
+    position:fixed;top:0;left:0;bottom:0;width:380px;
+    background:#151513;
+    border-right:1px solid var(--line);
+    display:flex;flex-direction:column;
+    padding:36px 30px 22px;
+    z-index:200;
+  }
+  .sb-brand{font-family:'Rubik Mono One',sans-serif;font-size:19px;font-weight:400;letter-spacing:-0.06em;word-spacing:-0.4em;display:inline-block;transition:color .25s;}
+  .sb-brand:hover{color:var(--accent);}
+  .sb-nav{margin-top:56px;display:flex;flex-direction:column;gap:5px;}
+  .sb-nav a{
+    font-family:'Mako','Pretendard',sans-serif;font-size:26px;font-weight:400;color:var(--text);letter-spacing:0em;
+    padding:0;transition:color .25s, transform .25s;display:inline-block;
+  }
+  .sb-nav a:hover{color:var(--accent);transform:translateX(4px);}
+  .sb-nav a.active{color:var(--accent);}
+  .sb-cards{margin-top:20px;display:flex;flex-direction:column;gap:12px;overflow-y:auto;overflow-x:hidden;padding-right:2px;}
+  .sb-card{
+    display:block;background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    padding:16px 18px;transition:background .25s, border-color .25s, transform .25s;
+  }
+  .sb-card.active{border-color:var(--accent);}
+  .sb-card:hover{background:#1f1c18;border-color:var(--line-strong);transform:translateX(3px);}
+  .sb-card .t{font-family:'Mako','Pretendard',sans-serif;font-size:14.5px;font-weight:600;color:var(--text);}
+  .sb-card .s{font-size:12.5px;color:var(--text-dim);margin-top:3px;}
+  .sb-group{display:flex;flex-direction:column;}
+  button.sb-card{width:100%;text-align:left;font:inherit;cursor:pointer;position:relative;}
+  .sb-card .chev{position:absolute;top:16px;right:16px;width:9px;height:9px;border-right:1.5px solid var(--text-dim);border-bottom:1.5px solid var(--text-dim);transform:rotate(45deg);transition:transform .25s;}
+  .sb-group.open .chev{transform:rotate(-135deg);}
+  .sb-subcards{display:grid;grid-template-rows:0fr;transition:grid-template-rows .28s ease;}
+  .sb-group.open .sb-subcards{grid-template-rows:1fr;}
+  .sb-subcards-inner{overflow:hidden;display:flex;flex-direction:column;gap:8px;padding-top:8px;}
+  .sb-subcard{
+    display:block;background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:12px 16px 12px 22px;margin-left:14px;border-left:2px solid var(--line-strong);
+    transition:background .25s, border-color .25s, transform .25s;
+  }
+  .sb-subcard.active{border-color:var(--accent);}
+  .sb-subcard:hover{background:#1f1c18;border-color:var(--line-strong);transform:translateX(3px);}
+  .sb-subcard .t{font-family:'Mako','Pretendard',sans-serif;font-size:13.5px;font-weight:600;color:var(--text);}
+  .sb-subcard .s{font-size:12px;color:var(--text-dim);margin-top:2px;}
+  .sb-foot{margin-top:auto;padding-top:26px;}
+  .sb-clock{
+    font-family:'Mako','Pretendard',sans-serif;font-size:32px;font-weight:400;font-variant-numeric:tabular-nums;letter-spacing:0.01em;
+  }
+  .sb-status{
+    margin-top:18px;padding-top:14px;border-top:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;
+    font-size:12px;color:var(--text-dim);
+  }
+  .sb-status .loc{display:flex;align-items:center;gap:8px;}
+  .sb-status .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);}
+
+  main{margin-left:380px;}
+
+  /* ---------- detail page ---------- */
+  .detail-hero{width:100%;height:64vh;min-height:360px;object-fit:cover;display:block;filter:saturate(1.05);}
+  .detail-hero--intro{
+    height:auto;aspect-ratio:16/9;max-height:78vh;min-height:auto;
+    width:calc(100% - 80px);margin:52px 40px 0;border-radius:18px;
+  }
+  .detail-head{padding:56px 40px 0;}
+  .detail-head--top{padding:52px 40px 0;}
+  .detail-tag{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
+  .detail-title{font-family:'Fraunces',serif;font-size:clamp(32px,5vw,60px);font-weight:400;}
+  .detail-year{font-size:14px;color:var(--text-faint);margin-top:12px;}
+  .detail-lede{margin-top:34px;font-size:19px;line-height:1.7;color:var(--text);max-width:72ch;}
+  .detail-body{margin-top:16px;font-size:15px;line-height:1.85;color:var(--text-dim);max-width:72ch;}
+
+  /* ---------- two-column intro (narinkim style) ---------- */
+  .detail-intro-split{
+    display:grid;grid-template-columns:260px 1fr;gap:40px;
+    padding:52px 40px 0;align-items:start;
+  }
+  .detail-intro-left .name-year{font-size:19px;font-weight:600;color:var(--text);}
+  .detail-intro-left .cat{font-size:15px;color:var(--text-dim);margin-top:10px;line-height:1.5;}
+  .detail-intro-right p{font-size:15px;line-height:1.75;color:var(--text);max-width:none;}
+  .detail-intro-right p + p{margin-top:22px;color:var(--text-dim);font-size:15px;line-height:1.85;max-width:none;}
+  .detail-intro-right p.en{
+    margin-top:26px;padding-top:22px;border-top:1px solid var(--line);
+    font-style:italic;color:var(--text-faint);font-size:14px;line-height:1.8;max-width:none;
+  }
+
+  .detail-meta-grid{
+    display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px 24px;
+    margin:56px 40px 0;padding:28px 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
+  .detail-meta-grid div{flex:0 0 auto;}
+  .detail-meta-grid div span{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);margin-bottom:8px;}
+  .detail-meta-grid div p{font-size:14px;color:var(--text);line-height:1.5;}
+
+  .detail-gallery{padding:60px 40px 20px;display:flex;flex-direction:column;gap:20px;}
+  .detail-gallery img{width:100%;border-radius:6px;display:block;background:var(--bg-soft);}
+  .detail-gallery .row2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .detail-gallery .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;}
+
+  .detail-section{padding:20px 40px 80px;}
+  .detail-section h3{font-family:'Fraunces',serif;font-size:clamp(22px,3vw,30px);font-weight:400;margin-bottom:18px;}
+  .detail-section p{font-size:15px;line-height:1.85;color:var(--text-dim);max-width:72ch;margin-bottom:14px;}
+  .detail-swatches{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;}
+  .detail-swatch{width:110px;}
+  .detail-swatch .chip{width:100%;height:66px;border-radius:6px;border:1px solid var(--line);}
+  .detail-swatch p{margin-top:8px;font-size:11.5px;color:var(--text-dim);line-height:1.5;}
+
+  .detail-back{padding:20px 40px 110px;border-top:1px solid var(--line);margin:0 40px;}
+  .detail-back a{
+    display:inline-flex;align-items:center;gap:8px;margin-top:40px;
+    font-size:14px;color:var(--text-dim);transition:color .25s;
+  }
+  .detail-back a:hover{color:var(--accent);}
+
+  @media(max-width:1100px){
+    .detail-intro-split{grid-template-columns:220px 1fr;gap:28px;}
+    .detail-meta-grid{gap:20px 36px;}
+  }
+
+  @media(max-width:940px){
+    .detail-intro-split{grid-template-columns:1fr;gap:14px;}
+    .detail-intro-left .cat br{display:none;}
+    .detail-intro-left .cat{margin-top:4px;}
+  }
+
+  @media(max-width:860px){
+    .sidebar{
+      position:relative;width:100%;height:auto;border-right:none;border-bottom:1px solid var(--line);
+      padding:26px 20px 24px;
+    }
+    .sb-cards{max-height:none;}
+    main{margin-left:0;}
+    .detail-hero{height:42vh;}
+    .detail-hero--intro{width:calc(100% - 40px);margin:32px 20px 0;border-radius:14px;max-height:56vh;}
+    .detail-head{padding:40px 20px 0;}
+    .detail-head--top{padding:36px 20px 0;}
+    .detail-intro-split{grid-template-columns:1fr;gap:16px;padding:36px 20px 0;}
+    .detail-meta-grid{margin:40px 20px 0;gap:18px 28px;}
+    .detail-gallery{padding:40px 20px 10px;}
+    .detail-gallery .row2, .detail-gallery .row3{grid-template-columns:1fr;}
+    .detail-section{padding:10px 20px 60px;}
+    .detail-back{margin:0 20px;padding:10px 0 80px;}
+  }
+
+  /* ---------- contact modal ---------- */
+  .contact-modal-overlay{
+    position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);
+    z-index:10000;display:none;align-items:center;justify-content:center;padding:20px;
+  }
+  .contact-modal-overlay.open{display:flex;}
+  .contact-modal{
+    background:#ffffff;color:#171613;border-radius:20px;max-width:440px;width:100%;
+    padding:36px 32px 32px;position:relative;box-shadow:0 30px 70px rgba(0,0,0,0.45);
+    font-family:'Pretendard',sans-serif;
+  }
+  .contact-modal .close-btn{
+    position:absolute;top:18px;right:18px;background:none;border:none;font-size:20px;
+    color:#888;cursor:pointer;line-height:1;padding:6px;
+  }
+  .contact-modal .close-btn:hover{color:#171613;}
+  .contact-modal h2{font-size:23px;font-weight:700;margin-bottom:8px;}
+  .contact-modal .sub{font-size:13.5px;color:#8a8a8a;margin-bottom:26px;}
+  .contact-modal label{display:block;font-size:13px;font-weight:600;margin-bottom:8px;margin-top:18px;color:#222;}
+  .contact-modal label:first-of-type{margin-top:0;}
+  .contact-modal input, .contact-modal textarea{
+    width:100%;padding:12px 14px;border:1px solid #e3e2de;border-radius:10px;background:#f6f5f2;
+    font-family:'Pretendard',sans-serif;font-size:14px;color:#171613;outline:none;transition:border-color .2s;
+  }
+  .contact-modal input:focus, .contact-modal textarea:focus{border-color:#171613;}
+  .contact-modal textarea{min-height:100px;resize:vertical;}
+  .contact-modal button.send-btn{
+    margin-top:24px;width:100%;padding:14px;border:none;border-radius:10px;background:#171613;color:#fff;
+    font-size:14.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;
+    transition:background .2s;font-family:'Pretendard',sans-serif;
+  }
+  .contact-modal button.send-btn:hover{background:#333;}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <a class="sb-brand" href="index.html">SAE KYOUNG</a>
+
+  <nav class="sb-nav">
+    <a href="info.html">Info</a>
+    <a href="index.html#work">Work</a>
+    <a href="#" onclick="openContactModal();return false;">Contact</a>
+  </nav>
+
+  <div class="sb-cards">
+    <div class="sb-group open" id="willogGroup">
+      <button type="button" class="sb-card" onclick="document.getElementById('willogGroup').classList.toggle('open')">
+        <div class="t">Willog</div>
+        <div class="s">Practical Work</div>
+        <span class="chev"></span>
+      </button>
+      <div class="sb-subcards">
+        <div class="sb-subcards-inner">
+          <a class="sb-subcard" href="willog.html">
+            <div class="t">Willog</div>
+            <div class="s">Corporate Branding</div>
+          </a>
+          <a class="sb-subcard" href="willog-ppt.html">
+            <div class="t">Willog</div>
+            <div class="s">2025 PPT Template 3.1ver</div>
+          </a>
+          <a class="sb-subcard active" href="willog-intro.html">
+            <div class="t">Willog</div>
+            <div class="s">Company Introduction</div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <a class="sb-card " href="soun.html">
+      <div class="t">소운탕</div>
+      <div class="s">Spatial Branding</div>
+    </a>
+    <a class="sb-card " href="ohi.html">
+      <div class="t">Ohi</div>
+      <div class="s">Product Branding</div>
+    </a>
+  </div>
+
+  <div class="sb-foot">
+    <div class="sb-clock" id="clock">--:--:--</div>
+    <div class="sb-status">
+      <span class="loc"><span class="dot"></span>Seoul, KR</span>
+      <span id="weather">—</span>
+    </div>
+  </div>
+</aside>
+
+<main>
+
+<main>
+
+<div class="detail-hero detail-hero--intro" style="background:#fff;display:flex;align-items:center;justify-content:center;padding:80px;box-sizing:border-box;">
+  <img src="Dev_Logo.svg" alt="Willog" style="max-width:53%;max-height:53%;width:auto;height:auto;object-fit:contain;">
+</div>
+
+<div class="detail-intro-split">
+  <div class="detail-intro-left">
+    <div class="name-year">Willog Company Introduction, 2025</div>
+    <div class="cat">Company Profile Redesign</div>
+  </div>
+  <div class="detail-intro-right">
+    <p>기존 회사 소개서의 노후화된 디자인과 정보 구조를 개선해, 브랜드 정체성을 효과적으로 전달하고 고객·파트너사 대상 신뢰도를 높이기 위해 리디자인을 진행했어요.</p>
+    <p>기능·화면 위주의 설명 대신 다이어그램과 아이콘 중심으로 이해도를 높이고, 핵심 가치를 분명하게 보여주는 메시지 우선 구조로 재구성했습니다.</p>
+  </div>
+</div>
+
+<div class="detail-meta-grid">
+  <div><span>Role</span><p>Brand &amp; Communication Designer</p></div>
+  <div><span>Year</span><p>2025</p></div>
+  <div><span>Type</span><p>Company Profile Redesign</p></div>
+  <div><span>Tools</span><p>Figma, PowerPoint</p></div>
+  <div><span>Contribution</span><p>Direction 50%</p></div>
+</div>
+
+<div class="detail-back">
+  <a href="index.html#work">← Back to Work</a>
+</div>
+
+<script>
+  function updateClock(){
+    const now = new Date();
+    const seoul = new Intl.DateTimeFormat('en-GB', {
+      timeZone:'Asia/Seoul', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false
+    }).format(now);
+    document.getElementById('clock').textContent = seoul;
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current_weather=true')
+    .then(r => r.json())
+    .then(d => {
+      const t = Math.round(d.current_weather.temperature);
+      document.getElementById('weather').textContent = t + '°C';
+    })
+    .catch(() => { document.getElementById('weather').textContent = ''; });
+</script>
+
+</main>
+
+<div class="contact-modal-overlay" id="contactOverlay">
+  <div class="contact-modal">
+    <button class="close-btn" type="button" onclick="closeContactModal()">✕</button>
+    <h2>Let's work together 👋</h2>
+    <p class="sub">메시지를 보내주시면 빠르게 답장드릴게요!</p>
+    <form id="contactForm">
+      <label for="cName">Name</label>
+      <input type="text" id="cName" placeholder="Your name" required>
+      <label for="cEmail">Email</label>
+      <input type="email" id="cEmail" placeholder="your@email.com" required>
+      <label for="cMessage">Message</label>
+      <textarea id="cMessage" placeholder="Hey SaeKyoung, nice to meet you..." required></textarea>
+      <button type="submit" class="send-btn">Send Message →</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  function openContactModal(){
+    document.getElementById('contactOverlay').classList.add('open');
+  }
+  function closeContactModal(){
+    document.getElementById('contactOverlay').classList.remove('open');
+  }
+  document.getElementById('contactOverlay').addEventListener('click', function(e){
+    if(e.target.id === 'contactOverlay') closeContactModal();
+  });
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('cName').value;
+    const email = document.getElementById('cEmail').value;
+    const message = document.getElementById('cMessage').value;
+    const subject = encodeURIComponent('[Portfolio Contact] ' + name);
+    const body = encodeURIComponent('이름: ' + name + '\n이메일: ' + email + '\n\n' + message);
+    window.location.href = 'mailto:osg497@gmail.com?subject=' + subject + '&body=' + body;
+    closeContactModal();
+  });
+</script>
+</body>
+</html>
